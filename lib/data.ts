@@ -272,3 +272,44 @@ export const AIRPODS = [
     image: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+export const ACCESSORIES = [
+  {
+    slug: "apple-pencil-2",
+    model: "Apple Pencil (2.ª gen)",
+    type: "Stylus",
+    compatibility: "iPad Pro, iPad Air, iPad mini",
+    features: "Carga magnética, doble toque",
+    price: "S/. 599",
+    image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "magic-keyboard-ipad-pro",
+    model: "Magic Keyboard",
+    type: "Teclado",
+    compatibility: "iPad Pro 11\" y iPad Air",
+    features: "Trackpad integrado, teclas retroiluminadas",
+    extra: "Para iPad",
+    price: "S/. 1,299",
+    image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "mag-safe-charger",
+    model: "Cargador MagSafe",
+    type: "Cargador inalámbrico",
+    compatibility: "iPhone 12 o posterior",
+    features: "Carga rápida inalámbrica de hasta 15W",
+    price: "S/. 199",
+    image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "usb-c-power-adapter-20w",
+    model: "Adaptador de corriente USB-C 20W",
+    type: "Adaptador de corriente",
+    compatibility: "iPhone, iPad, AirPods",
+    features: "Carga rápida",
+    extra: "Original",
+    price: "S/. 129",
+    image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
+  }
+];
