@@ -7,9 +7,39 @@ import { ArrowLeft } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { PurchaseOptions } from "@/components/PurchaseOptions";
 
+import type { Metadata } from "next";
+
 export function generateStaticParams() {
   return MACBOOKS.map((mac) => ({ slug: mac.slug }));
 }
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const mac = MACBOOKS.find((m) => m.slug === slug);
+  if (!mac) return {};
+
+  const specs = [mac.chip, mac.ram, mac.storage].filter(Boolean).join(", ");
+  const title = `${mac.model} ${mac.chip || ""} ${mac.storage || ""} en Peru`.trim();
+  const description = `Compra ${mac.model} con ${specs} importado desde EE.UU. ${mac.price}. Garantia incluida. Envio a todo el Peru.`;
+
+  return {
+    title,
+    description,
+    keywords: [`${mac.model} Peru`, `${mac.model} Lima`, `MacBook ${mac.chip} Peru`, "MacBook importado Peru"],
+    alternates: { canonical: `https://applexpress.com.pe/mac/${slug}` },
+    openGraph: {
+      title: `${title} | Apple Express Peru`,
+      description,
+      url: `https://applexpress.com.pe/mac/${slug}`,
+      images: mac.image.startsWith("http")
+        ? [{ url: mac.image, width: 800, height: 600, alt: mac.model }]
+        : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+  };
+}
+
 
 const SPECS_MAP = [
   { key: "chip",    label: "Chip" },
@@ -33,8 +63,34 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
 
   const waHref = `https://wa.me/51934288165?text=Hola,%20quiero%20consultar%20sobre%20la%20${encodeURIComponent(mac.model)}`;
 
+  const priceRaw = mac.price.replace(/[^\d]/g, "");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${mac.model} ${mac.chip || ""} ${mac.storage || ""}`.trim(),
+    description: `${mac.model} con chip ${mac.chip || ""}, ${mac.ram || ""} RAM y ${mac.storage || ""} importado desde EE.UU.`,
+    image: mac.image,
+    brand: { "@type": "Brand", name: "Apple" },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "PEN",
+      price: priceRaw,
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Apple Express Peru",
+        url: "https://applexpress.com.pe",
+      },
+    },
+  };
+
   return (
     <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <section className="pt-6 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-6 max-w-[980px] mx-auto">
