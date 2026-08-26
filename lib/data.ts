@@ -198,3 +198,35 @@ export const IPADS = [
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+export const WATCHES = [
+  {
+    slug: "apple-watch-se",
+    model: "Apple Watch SE",
+    chip: "S8 SiP",
+    size: "40mm o 44mm",
+    screen: "Pantalla Retina",
+    price: "S/. 1,199",
+    image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "apple-watch-series-9",
+    model: "Apple Watch Series 9",
+    chip: "S9 SiP",
+    size: "41mm o 45mm",
+    screen: "Pantalla Retina siempre activa",
+    extra: "Gesto de doble toque",
+    price: "S/. 1,899",
+    image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "apple-watch-ultra-2",
+    model: "Apple Watch Ultra 2",
+    chip: "S9 SiP",
+    size: "49mm",
+    screen: "Pantalla Retina siempre activa (3000 nits)",
+    extra: "Titanio",
+    price: "S/. 3,499",
+    image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
+  }
+];
