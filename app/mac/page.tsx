@@ -1,91 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import Image from "next/image";
-
-const MACBOOKS = [
-  {
-    model: "MacBook Pro 13\"",
-    chip: "M1 2020",
-    ram: "16GB",
-    storage: "256GB SSD",
-    price: "S/. 2,299",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 13\"",
-    chip: "M1 2020",
-    ram: "16GB",
-    storage: "512GB SSD",
-    price: "S/. 2,499",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M1 2021",
-    ram: "16GB",
-    storage: "512GB SSD",
-    price: "S/. 3,299",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M1 2021",
-    ram: "16GB",
-    storage: "1TB SSD",
-    price: "S/. 3,499",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M1 2021",
-    ram: "32GB",
-    storage: "1TB SSD",
-    price: "S/. 4,299",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M1 Max 2021",
-    ram: "32GB",
-    storage: "1TB SSD",
-    extra: "32 Núcleos",
-    price: "S/. 5,299",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M2 2023",
-    ram: "16GB",
-    storage: "512GB SSD",
-    price: "S/. 4,299",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M2 2023",
-    ram: "32GB",
-    storage: "512GB SSD",
-    price: "S/. 5,199",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    model: "MacBook Pro 16\"",
-    chip: "M3 2024",
-    ram: "36GB",
-    storage: "1TB SSD",
-    price: "S/. 6,999",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
-  },
-];
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { MACBOOKS } from "@/lib/data";
 
 function MacBookCard({ mac, idx }: { mac: any; idx: number }) {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -97,7 +18,6 @@ function MacBookCard({ mac, idx }: { mac: any; idx: number }) {
       
       {/* Image Area */}
       <div className="w-full h-48 mb-6 relative rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-        {/* Usamos img en lugar de next/image temporalmente para no bloquear por dominios no configurados en next.config */}
         <img 
           src={mac.image}
           alt={mac.model}
@@ -114,42 +34,14 @@ function MacBookCard({ mac, idx }: { mac: any; idx: number }) {
         {mac.price}
       </div>
 
-      {/* Expand/Collapse Toggle */}
-      <button 
-        onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-between w-full text-sm font-semibold text-slate-600 dark:text-slate-300 mb-4 hover:text-brand transition-colors"
-      >
-        <span>{expanded ? "Ocultar características" : "Ver características"}</span>
-        {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-      </button>
-
-      {/* Expandable Specifications */}
-      <AnimatePresence>
-        {expanded && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="space-y-4 mb-6 overflow-hidden"
-          >
-            <div className="flex justify-between items-center text-sm border-b border-slate-100 dark:border-slate-800 pb-3 pt-2">
-              <span className="text-slate-500">Procesador</span>
-              <span className="font-semibold text-slate-900 dark:text-slate-200 px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">{mac.chip}</span>
-            </div>
-            <div className="flex justify-between items-center text-sm border-b border-slate-100 dark:border-slate-800 pb-3">
-              <span className="text-slate-500">Memoria RAM</span>
-              <span className="font-medium text-slate-900 dark:text-slate-200">{mac.ram}</span>
-            </div>
-            <div className="flex justify-between items-center text-sm border-b border-slate-100 dark:border-slate-800 pb-3">
-              <span className="text-slate-500">Almacenamiento</span>
-              <span className="font-medium text-slate-900 dark:text-slate-200">{mac.storage}</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="mt-auto pt-2">
-        <button className="w-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white group-hover:bg-brand group-hover:text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+      <div className="mt-auto pt-2 flex flex-col gap-3">
+        <Link 
+          href={`/mac/${mac.slug}`}
+          className="w-full block text-center bg-brand text-white py-3.5 rounded-xl font-semibold hover:bg-brand-hover transition-all duration-300 shadow-md shadow-brand/20"
+        >
+          Ver características
+        </Link>
+        <button className="w-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-3.5 rounded-xl font-semibold transition-all duration-300">
           Me interesa
         </button>
       </div>
