@@ -138,3 +138,63 @@ export const IPHONES = [
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+export const IPADS = [
+  {
+    slug: "ipad-9th-gen-64gb",
+    model: "iPad (9.ª generación)",
+    chip: "A13 Bionic",
+    storage: "64GB",
+    screen: "10.2\" Retina",
+    price: "S/. 1,499",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "ipad-10th-gen-64gb",
+    model: "iPad (10.ª generación)",
+    chip: "A14 Bionic",
+    storage: "64GB",
+    screen: "10.9\" Liquid Retina",
+    price: "S/. 1,999",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "ipad-air-5-64gb",
+    model: "iPad Air",
+    chip: "M1",
+    storage: "64GB",
+    screen: "10.9\" Liquid Retina",
+    extra: "Chip M1",
+    price: "S/. 2,899",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "ipad-air-5-256gb",
+    model: "iPad Air",
+    chip: "M1",
+    storage: "256GB",
+    screen: "10.9\" Liquid Retina",
+    price: "S/. 3,499",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "ipad-pro-11-m2-128gb",
+    model: "iPad Pro 11\"",
+    chip: "M2",
+    storage: "128GB",
+    screen: "11\" Liquid Retina",
+    extra: "Chip M2",
+    price: "S/. 3,999",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "ipad-pro-12-9-m2-256gb",
+    model: "iPad Pro 12.9\"",
+    chip: "M2",
+    storage: "256GB",
+    screen: "12.9\" Liquid Retina XDR",
+    extra: "Chip M2",
+    price: "S/. 5,499",
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+  }
+];
