@@ -20,6 +20,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,14 +33,23 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
       {/* Top Announcement Banner */}
-      <div className="bg-neutral-100 dark:bg-neutral-900 text-center py-2.5 text-[0.8rem] sm:text-sm border-b border-neutral-200 dark:border-neutral-800">
-        <p className="max-w-7xl mx-auto px-4 text-slate-600 dark:text-slate-300">
-          Bienvenidos a FHARMAG SAC. Distribuidores oficiales e importadores de los mejores productos Apple en el Perú.{" "}
-          <Link href="#" className="text-brand dark:text-brand-hover hover:underline font-medium">
-            Saber más &gt;
-          </Link>
-        </p>
-      </div>
+      {isBannerVisible && (
+        <div className="relative bg-neutral-100 dark:bg-neutral-900 text-center py-2.5 px-8 text-[0.8rem] sm:text-sm border-b border-neutral-200 dark:border-neutral-800">
+          <p className="max-w-7xl mx-auto text-slate-600 dark:text-slate-300">
+            Bienvenidos a FHARMAG SAC. Distribuidores oficiales e importadores de los mejores productos Apple en el Perú.{" "}
+            <Link href="#" className="text-brand dark:text-brand-hover hover:underline font-medium">
+              Saber más &gt;
+            </Link>
+          </p>
+          <button 
+            onClick={() => setIsBannerVisible(false)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors p-1"
+            aria-label="Cerrar anuncio"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       <div
         className={cn(
