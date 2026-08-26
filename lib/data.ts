@@ -230,3 +230,45 @@ export const WATCHES = [
     image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
   }
 ];
+
+export const AIRPODS = [
+  {
+    slug: "airpods-2nd-gen",
+    model: "AirPods (2.ª generación)",
+    chip: "Chip H1",
+    audio: "Audio estándar",
+    battery: "Hasta 24h con estuche",
+    price: "S/. 599",
+    image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "airpods-3rd-gen",
+    model: "AirPods (3.ª generación)",
+    chip: "Chip H1",
+    audio: "Audio espacial personalizado",
+    battery: "Hasta 30h con estuche",
+    extra: "Resistentes al agua",
+    price: "S/. 899",
+    image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "airpods-pro-2nd-gen",
+    model: "AirPods Pro (2.ª gen)",
+    chip: "Chip H2",
+    audio: "Cancelación Activa de Ruido",
+    battery: "Hasta 30h con estuche",
+    extra: "USB-C",
+    price: "S/. 1,199",
+    image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "airpods-max",
+    model: "AirPods Max",
+    chip: "Chip H1 (x2)",
+    audio: "Cancelación Activa de Ruido Pro",
+    battery: "Hasta 20h continuas",
+    extra: "Diadema premium",
+    price: "S/. 2,499",
+    image: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=800&q=80"
+  }
+];
