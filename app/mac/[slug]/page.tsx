@@ -11,8 +11,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function MacBookDetailPage({ params }: { params: { slug: string } }) {
-  const mac = MACBOOKS.find((m) => m.slug === params.slug);
+export default async function MacBookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const mac = MACBOOKS.find((m) => m.slug === resolvedParams.slug);
 
   if (!mac) {
     notFound();
