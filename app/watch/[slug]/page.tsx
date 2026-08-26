@@ -1,141 +1,151 @@
-import { WATCHES } from "@/lib/data";
+﻿import { WATCHES } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
+import { PurchaseOptions } from "@/components/PurchaseOptions";
+import type { Metadata } from "next";
 
-export async function generateStaticParams() {
-  return WATCHES.map((watch) => ({
-    slug: watch.slug,
-  }));
+export function generateStaticParams() {
+  return WATCHES.map((item) => ({ slug: item.slug }));
 }
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const item = WATCHES.find((i) => i.slug === slug);
+  if (!item) return {};
+
+  const specs = [(item as any).chip, (item as any).size, item.battery].filter(Boolean).join(", ");
+  const title = `${item.model} en Perú | Apple Express`;
+  const description = `Compra ${item.model} con ${specs} importado desde EE.UU. Precio ${item.price}. Garantía incluida. Envío a todo el Perú.`;
+
+  return {
+    title,
+    description,
+    keywords: [`${item.model} Peru`, `${item.model} Lima`, "Apple Watch Peru", "comprar Apple Watch Peru"],
+    alternates: { canonical: `https://applexpress.com.pe/watch/${slug}` },
+    openGraph: {
+      title: `${title} | Apple Express Perú`,
+      description,
+      url: `https://applexpress.com.pe/watch/${slug}`,
+      images: item.image.startsWith("http")
+        ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
+        : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    },
+  };
+}
+
+const SPECS_MAP = [
+  { key: "chip",            label: "Chip" },
+  { key: "size",            label: "Tamaño" },
+  { key: "screen",          label: "Pantalla" },
+  { key: "battery",         label: "Batería" },
+  { key: "waterResistance", label: "Resistencia" },
+];
 
 export default async function WatchDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const watch = WATCHES.find((w) => w.slug === resolvedParams.slug);
+  const item = WATCHES.find((i) => i.slug === resolvedParams.slug);
+  if (!item) notFound();
 
-  if (!watch) {
-    notFound();
-  }
+  const priceRaw = item.price.replace(/[^\d]/g, "");
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: item.model,
+    description: `${item.model} importado desde EE.UU. Pantalla ${item.screen || ""}.`,
+    image: item.image,
+    brand: { "@type": "Brand", name: "Apple" },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "PEN",
+      price: priceRaw,
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Apple Express Perú",
+        url: "https://applexpress.com.pe",
+      },
+    },
+  };
 
   return (
-    <main className="min-h-screen bg-[#f5f5f7] dark:bg-black pt-28">
+    <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
-      <section className="pt-4 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="mb-6 md:mb-8">
-          <Link 
+      <section className="pt-6 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-6 max-w-[980px] mx-auto">
+        <FadeIn delay={0}>
+          <Link
             href="/watch"
-            className="group inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+            className="group inline-flex items-center gap-1.5 text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] dark:text-[#86868b] dark:hover:text-white transition-colors mb-8 sm:mb-10"
           >
-            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 mr-3 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-            </span>
-            Volver a Apple Watch
+            <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5 duration-200" />
+            Apple Watch
           </Link>
-        </div>
+        </FadeIn>
 
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 lg:p-12 shadow-xl shadow-brand/5 border border-slate-200 dark:border-slate-800">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            {/* Image Section */}
-            <FadeIn delay={0.1} className="w-full md:sticky md:top-32 h-[300px] md:h-[500px] relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-8 group">
-              <img 
-                src={watch.image} 
-                alt={watch.model}
-                className="object-contain w-full h-full mix-blend-multiply dark:mix-blend-normal opacity-90 transition-transform duration-700 group-hover:scale-105"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
+          <FadeIn delay={0.1} className="w-full md:sticky md:top-24">
+            <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
+              <img
+                src={item.image}
+                alt={item.model}
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            {/* Details Section */}
-            <StaggerContainer className="flex flex-col justify-center">
-              {watch.extra && (
-                <StaggerItem>
-                  <span className="inline-block px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-bold uppercase tracking-wider mb-2 w-fit">
-                    {watch.extra}
-                  </span>
-                </StaggerItem>
-              )}
+          <StaggerContainer className="flex flex-col">
+            {(item as any).extra && (
               <StaggerItem>
-                <h1 className="text-2xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-1">
-                  {watch.model}
-                </h1>
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[10px] font-semibold uppercase tracking-wider mb-3">
+                  {(item as any).extra}
+                </span>
               </StaggerItem>
-              <StaggerItem>
-                <div className="text-xl lg:text-3xl font-medium text-brand mb-4">
-                  {watch.price}
-                </div>
-              </StaggerItem>
+            )}
 
-              <StaggerItem className="space-y-4 mb-6">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 border-b border-slate-100 dark:border-slate-800 pb-2">
-                  Especificaciones Técnicas
-                </h3>
-                <ul className="space-y-3 text-sm">
-                  {watch.size && (
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 text-brand mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-slate-900 dark:text-white">Caja</p>
-                      <p className="text-slate-600 dark:text-slate-400">{watch.size}</p>
-                    </div>
-                  </li>
-                  )}
-                  {watch.screen && (
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 text-brand mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-slate-900 dark:text-white">Pantalla</p>
-                      <p className="text-slate-600 dark:text-slate-400">{watch.screen}</p>
-                    </div>
-                  </li>
-                  )}
-                  {watch.chip && (
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 text-brand mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-slate-900 dark:text-white">Chip</p>
-                      <p className="text-slate-600 dark:text-slate-400">{watch.chip}</p>
-                    </div>
-                  </li>
-                  )}
-                  {watch.battery && (
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 text-brand mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-slate-900 dark:text-white">Batería</p>
-                      <p className="text-slate-600 dark:text-slate-400">{watch.battery}</p>
-                    </div>
-                  </li>
-                  )}
-                  {watch.waterResistance && (
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 mt-0.5 text-brand mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-slate-900 dark:text-white">Resistencia al Agua</p>
-                      <p className="text-slate-600 dark:text-slate-400">{watch.waterResistance}</p>
-                    </div>
-                  </li>
-                  )}
-                </ul>
-              </StaggerItem>
+            <StaggerItem>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1d1d1f] dark:text-white leading-tight mb-1">
+                {item.model}
+              </h1>
+            </StaggerItem>
 
-              <StaggerItem className="flex flex-col gap-3">
-                <a 
-                  href={`https://wa.me/51934288165?text=Hola,%20quiero%20comprar%20el%20${encodeURIComponent(watch.model)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-brand text-white py-2 px-4 rounded-lg font-medium hover:bg-brand-hover transition-all duration-300 shadow-sm shadow-brand/20 text-sm"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                  Consultar ahora
-                </a>
-              </StaggerItem>
-            </StaggerContainer>
-          </div>
+            <StaggerItem>
+              <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-6 sm:mb-8">
+                Desde {item.price}
+              </p>
+            </StaggerItem>
+
+            <StaggerItem>
+              <div className="border-t border-[#e8e8ed] dark:border-[#2a2a2a] pt-5 mb-6 sm:mb-8">
+                <p className="text-[10px] font-semibold text-[#6e6e73] uppercase tracking-[0.15em] mb-4">
+                  Especificaciones
+                </p>
+                <dl className="space-y-0 divide-y divide-[#f0f0f0] dark:divide-[#1e1e1e]">
+                  {SPECS_MAP.map(({ key, label }) =>
+                    (item as any)[key] ? (
+                      <div key={key} className="flex items-start gap-3 py-2.5">
+                        <dt className="text-[12px] text-[#86868b] dark:text-[#6e6e73] w-[100px] sm:w-[110px] shrink-0 pt-px leading-snug">{label}</dt>
+                        <dd className="text-[12px] sm:text-[13px] text-[#1d1d1f] dark:text-white leading-snug">{(item as any)[key]}</dd>
+                      </div>
+                    ) : null
+                  )}
+                </dl>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <PurchaseOptions productName={item.model} />
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
