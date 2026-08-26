@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, ShoppingBag, Menu, X } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { SearchModal } from "@/components/SearchModal";
 
 const NAV_LINKS = [
   { name: "Tienda", href: "/tienda" },
@@ -21,6 +22,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,20 +32,31 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Auto-close banner after 10 seconds
+  useEffect(() => {
+    if (isBannerVisible) {
+      const timer = setTimeout(() => {
+        setIsBannerVisible(false);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [isBannerVisible]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
       {/* Top Announcement Banner */}
       {isBannerVisible && (
-        <div className="relative bg-neutral-100 dark:bg-neutral-900 text-center py-2.5 px-8 text-[0.8rem] sm:text-sm border-b border-neutral-200 dark:border-neutral-800">
+        <div className="relative bg-neutral-100 dark:bg-neutral-900 text-center py-2.5 px-10 sm:px-12 text-[0.8rem] sm:text-sm border-b border-neutral-200 dark:border-neutral-800">
           <p className="max-w-7xl mx-auto text-slate-600 dark:text-slate-300">
-            Bienvenidos a FHARMAG SAC. Distribuidores oficiales e importadores de los mejores productos Apple en el Perú.{" "}
-            <Link href="#" className="text-brand dark:text-brand-hover hover:underline font-medium">
-              Saber más &gt;
+            <span className="hidden md:inline">Bienvenidos a FHARMAG SAC. Distribuidores oficiales e importadores de los mejores productos Apple en el Perú. </span>
+            <span className="md:hidden">Distribuidores oficiales de productos Apple en el Perú. </span>
+            <Link href="#" className="text-brand dark:text-brand-hover hover:underline font-medium whitespace-nowrap group inline-flex items-center align-middle translate-y-[1px]">
+              Saber más <ChevronRight className="w-3.5 h-3.5 ml-0.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </p>
           <button 
             onClick={() => setIsBannerVisible(false)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors p-1"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors p-1 cursor-pointer"
             aria-label="Cerrar anuncio"
           >
             <X className="w-4 h-4" />
@@ -93,16 +106,19 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <button className="text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors">
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="cursor-pointer text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
+            >
               <Search className="w-5 h-5" />
               <span className="sr-only">Buscar</span>
             </button>
-            <button className="text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors">
+            <button className="cursor-pointer text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors">
               <ShoppingBag className="w-5 h-5" />
               <span className="sr-only">Bolsa</span>
             </button>
             <button
-              className="md:hidden text-neutral-800 dark:text-neutral-300"
+              className="cursor-pointer md:hidden text-neutral-800 dark:text-neutral-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -137,6 +153,8 @@ export function Navbar() {
           })}
         </div>
       )}
+
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }
