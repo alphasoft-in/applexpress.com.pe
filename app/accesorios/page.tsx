@@ -1,99 +1,30 @@
-"use client";
-
+﻿"use client";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { ProductCard } from "@/components/ProductCard";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ACCESSORIES } from "@/lib/data";
-
-function AccessoryCard({ accessory, idx }: { accessory: any; idx: number }) {
+import { useRef } from "react";
+export default function AccesoriosPage() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: headerRef, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["0px", "-80px"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
-      className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-xl shadow-brand/5 border border-slate-200 dark:border-slate-800 flex flex-col hover:border-brand/40 transition-colors group relative overflow-hidden"
-    >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
-      
-      {/* Image Area */}
-      <div className="w-full h-56 mb-6 relative rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-4">
-        <img 
-          src={accessory.image}
-          alt={accessory.model}
-          className="object-contain w-full h-full mix-blend-multiply dark:mix-blend-normal opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
-        />
-      </div>
-      
-      <div className="mb-4">
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{accessory.model}</h3>
-        {accessory.extra && <span className="inline-block mt-2 px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-semibold">{accessory.extra}</span>}
-      </div>
-      
-      <div className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
-        {accessory.price}
-      </div>
-
-      <div className="mt-auto pt-2 flex flex-col gap-3">
-        <Link 
-          href={`/accesorios/${accessory.slug}`}
-          className="w-full block text-center bg-brand text-white py-3.5 rounded-xl font-semibold hover:bg-brand-hover transition-all duration-300 shadow-md shadow-brand/20"
-        >
-          Ver características
-        </Link>
-        <a 
-          href={`https://wa.me/51982848503?text=Hola,%20me%20interesa%20el%20${encodeURIComponent(accessory.model)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full text-center bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-3.5 rounded-xl font-semibold transition-all duration-300"
-        >
-          Me interesa
-        </a>
-      </div>
-    </motion.div>
-  );
-}
-
-export default function AccessoriesPage() {
-  return (
-    <main className="min-h-screen bg-[#f5f5f7] dark:bg-black pt-32">
+    <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
       <Navbar />
-
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white">
-              Accesorios
-            </h1>
-            <span className="text-4xl">🔌</span>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto"
-          >
-            Todo lo que necesitas para sacarle el máximo provecho a tus dispositivos Apple.
-          </motion.p>
-        </div>
-
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {ACCESSORIES.map((accessory, idx) => (
-            <AccessoryCard key={idx} accessory={accessory} idx={idx} />
+      <section className="pt-16 sm:pt-24 pb-16 sm:pb-20 px-4 sm:px-6 max-w-[980px] mx-auto">
+        <motion.div ref={headerRef} style={{ y, opacity }} className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16,1,0.3,1] as [number,number,number,number] }} className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] uppercase tracking-[0.18em] mb-4">Originales Apple</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.06, ease: [0.16,1,0.3,1] as [number,number,number,number] }} className="text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#1d1d1f] dark:text-white leading-tight mb-4 sm:mb-5">Accesorios</motion.h1>
+          <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.12, ease: [0.16,1,0.3,1] as [number,number,number,number] }} className="text-base sm:text-lg md:text-xl text-[#6e6e73] dark:text-[#86868b] max-w-xl mx-auto font-medium leading-relaxed">Complementa tu experiencia Apple con accesorios originales importados directamente.</motion.p>
+        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {ACCESSORIES.map((item, idx) => (
+            <ProductCard key={idx} idx={idx} name={item.model} specs={[(item as any).type, (item as any).compatibility].filter(Boolean).join(" · ")} price={item.price} image={item.image} href={`/accesorios/${item.slug}`} waLink={`https://wa.me/51934288165?text=Hola,%20me%20interesa%20el%20${encodeURIComponent(item.model)}`} badge={(item as any).extra} />
           ))}
         </div>
-
-        <div className="mt-16 text-center text-sm text-neutral-500">
-          <p>Los equipos están sujetos a disponibilidad. Contáctanos por WhatsApp para confirmar stock y gestionar tu compra.</p>
-        </div>
       </section>
-
       <Footer />
     </main>
   );

@@ -2,85 +2,109 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const PRODUCTS = [
   {
-    id: "macbook-air",
-    title: "MacBook Air",
-    subtitle: "Súper ligero. Súper chip M3.",
+    id: "macbook-pro",
+    title: 'MacBook Pro 14\"',
+    subtitle: "Superpotencia para pros.",
     theme: "light",
-    href: "/macbook-air",
-    className: "md:col-span-2 h-[500px]",
-    bgClass: "bg-[#fbfbfd]", // Light gray background
+    href: "/mac",
+    colSpan: "md:col-span-2",
+    bgClass: "bg-[#fbfbfd]",
+    image: "/macbook_pro_14.png",
   },
   {
     id: "ipad-pro",
     title: "iPad Pro",
-    subtitle: "Increíblemente fino. Pantalla Ultra Retina XDR.",
+    subtitle: "Increiblemente fino.",
     theme: "dark",
-    href: "/ipad-pro",
-    className: "md:col-span-1 h-[500px]",
+    href: "/ipad",
+    colSpan: "md:col-span-1",
     bgClass: "bg-black",
+    image: "/ipadpro.jpg",
   },
   {
-    id: "watch-s9",
-    title: "Apple Watch Series 9",
-    subtitle: "Más inteligente. Más brillante. Más poderoso.",
+    id: "watch-se",
+    title: "Apple Watch SE",
+    subtitle: "Mucho mas por mucho menos.",
     theme: "dark",
-    href: "/watch-series-9",
-    className: "md:col-span-1 h-[500px]",
+    href: "/watch",
+    colSpan: "md:col-span-1",
     bgClass: "bg-[#111111]",
+    image: "/watchse3.png",
   },
   {
-    id: "airpods-pro",
-    title: "AirPods Pro",
-    subtitle: "Magia remasterizada.",
+    id: "airpods-max",
+    title: "AirPods Max",
+    subtitle: "Audio de alta fidelidad.",
     theme: "light",
-    href: "/airpods-pro",
-    className: "md:col-span-2 h-[500px]",
+    href: "/airpods",
+    colSpan: "md:col-span-2",
     bgClass: "bg-white",
+    image: "/airpods_max_black.png",
   },
 ];
 
 export function ProductGrid() {
   return (
-    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 py-16">
-      <div className="mb-10 text-center md:text-left">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Lo más vendido</h2>
-        <p className="text-slate-500 mt-2">Encuentra los equipos favoritos de nuestros clientes.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section className="w-full px-3 sm:px-4 py-8 sm:py-12 lg:py-16 bg-white dark:bg-black">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         {PRODUCTS.map((product, index) => (
           <motion.div
             key={product.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-brand/5 hover:border-brand/30 transition-all flex flex-col h-full"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.0, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className={cn(
+              "group relative overflow-hidden rounded-2xl sm:rounded-[2rem] flex flex-col items-center",
+              "h-[380px] sm:h-[440px] md:h-[500px] lg:h-[540px]",
+              "transition-transform hover:scale-[1.01] duration-500",
+              product.bgClass,
+              product.colSpan
+            )}
           >
-            {/* Image Placeholder */}
-            <div className="w-full aspect-square bg-slate-50 dark:bg-slate-800 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
-                <span className="text-xs text-slate-400">Imagen</span>
-                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-
-            <div className="flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+            {/* Text at top - Fixed size */}
+            <div className={cn(
+              "relative z-10 text-center pt-8 sm:pt-10 px-4 sm:px-8 shrink-0",
+              product.theme === "dark" ? "text-white" : "text-[#1d1d1f]"
+            )}>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-2">
                 {product.title}
               </h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">
+              <p className={cn(
+                "text-sm sm:text-base md:text-lg mb-4 sm:mb-5 font-medium",
+                product.theme === "dark" ? "text-[#86868b]" : "text-[#6e6e73]"
+              )}>
                 {product.subtitle}
               </p>
-              
               <Link
                 href={product.href}
-                className="w-full py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-medium hover:bg-brand hover:text-white dark:hover:bg-brand dark:hover:text-white transition-colors text-center text-sm flex items-center justify-center gap-2"
+                className={cn(
+                  "inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200",
+                  "backdrop-blur-md border",
+                  product.theme === "dark"
+                    ? "bg-white/10 text-white border-white/20 hover:bg-white/20"
+                    : "bg-black/5 text-[#1d1d1f] border-black/10 hover:bg-black/10"
+                )}
               >
-                Ver Detalles <ChevronRight className="w-4 h-4" />
+                Comprar <ChevronRight className="w-3.5 h-3.5" />
               </Link>
+            </div>
+
+            {/* Image - Fills remaining space, anchored to bottom */}
+            <div className="relative w-full flex-1 mt-4 sm:mt-6">
+              <Image
+                src={product.image}
+                alt={product.title}
+                fill
+                className="object-contain object-bottom group-hover:scale-105 transition-transform duration-700 ease-out p-4 sm:p-0"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </motion.div>
         ))}

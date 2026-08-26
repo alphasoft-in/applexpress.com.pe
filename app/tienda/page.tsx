@@ -1,104 +1,150 @@
-"use client";
+﻿"use client";
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { MapPin, Phone, Clock } from "lucide-react";
+
+const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const INFO = [
+  {
+    Icon: MapPin,
+    title: "Dirección",
+    lines: ["Calle Oslo 198, Oficina 201", "Los Portales - Ate, Lima"],
+  },
+  {
+    Icon: Phone,
+    title: "Contacto",
+    lines: ["982 848 503", "934 288 165"],
+  },
+  {
+    Icon: Clock,
+    title: "Horario",
+    lines: ["Lun - Vie: 9:00 - 18:00", "Sabado: 9:00 - 13:00", "Domingo: Cerrado"],
+  },
+];
 
 export default function TiendaPage() {
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 pt-32">
+    <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
       <Navbar />
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+      {/* Hero header */}
+      <section className="pt-16 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 max-w-[980px] mx-auto text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] uppercase tracking-[0.18em] mb-4"
+        >
+          Visita nuestro espacio
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.06, ease }}
+          className="text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#1d1d1f] dark:text-white leading-tight mb-4 sm:mb-5"
+        >
+          Nuestra Tienda
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.12, ease }}
+          className="text-base sm:text-lg md:text-xl text-[#6e6e73] dark:text-[#86868b] max-w-xl mx-auto font-medium leading-relaxed"
+        >
+          Visítanos para ver nuestros productos en persona y recibir asesoría experta sin compromiso.
+        </motion.p>
+      </section>
+
+      {/* Info + Map grid */}
+      <section className="px-4 sm:px-6 pb-20 sm:pb-28 max-w-[980px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-start">
+
+          {/* Info card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4"
+            transition={{ duration: 0.8, delay: 0.2, ease }}
+            className="bg-white dark:bg-[#111111] rounded-2xl sm:rounded-3xl border border-[#d2d2d7]/40 dark:border-[#2a2a2a] overflow-hidden"
           >
-            Nuestra Tienda Física
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            <div className="px-7 sm:px-10 pt-8 sm:pt-10 pb-2">
+              <p className="text-[10px] font-semibold text-[#6e6e73] uppercase tracking-[0.18em] mb-1">Sede</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#1d1d1f] dark:text-white tracking-tight">Sede Principal</h2>
+            </div>
+
+            <div className="divide-y divide-[#f0f0f0] dark:divide-[#1e1e1e]">
+              {INFO.map(({ Icon, title, lines }, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 + idx * 0.1, ease }}
+                  className="flex items-start gap-4 px-7 sm:px-10 py-5 sm:py-6 group"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] dark:bg-[#1d1d1f] border border-[#e8e8ed] dark:border-[#2a2a2a] flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-brand/10 group-hover:border-brand/20 transition-colors duration-200">
+                    <Icon className="w-4 h-4 text-[#6e6e73] group-hover:text-brand transition-colors duration-200" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-[#6e6e73] dark:text-[#6e6e73] uppercase tracking-wider mb-1">{title}</p>
+                    {lines.map((line, i) => (
+                      <p key={i} className="text-sm text-[#1d1d1f] dark:text-white font-medium leading-relaxed">{line}</p>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="px-7 sm:px-10 py-6 sm:py-8 border-t border-[#f0f0f0] dark:border-[#1e1e1e]">
+              <a
+                href="https://wa.me/51934288165?text=Hola,%20quiero%20coordinar%20una%20visita%20a%20la%20tienda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full block text-center bg-[#1d1d1f] dark:bg-white text-white dark:text-black py-3 rounded-full text-sm font-semibold hover:bg-black dark:hover:bg-[#e8e8ed] transition-all duration-200 hover:scale-[1.02]"
+              >
+                coordinar visita
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Map card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.3, ease }}
+            className="bg-white dark:bg-[#111111] rounded-2xl sm:rounded-3xl border border-[#d2d2d7]/40 dark:border-[#2a2a2a] overflow-hidden"
           >
-            Visítanos para conocer nuestros productos en persona, recibir asesoría experta y realizar tus compras con total seguridad.
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Store Info Cards */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-xl shadow-brand/5 border border-slate-200 dark:border-slate-800">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Sede Principal</h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-brand/10 text-brand rounded-xl">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg">Dirección</h3>
-                    <p className="text-slate-600 dark:text-slate-400 mt-1">
-                      Calle Oslo 198<br/>
-                      Oficina 201, Los Portales - Ate<br/>
-                      Lima, Perú
-                    </p>
-                  </div>
+            {/* Map placeholder with Apple Maps aesthetic */}
+            <div className="h-56 sm:h-72 lg:h-80 bg-[#f5f5f7] dark:bg-[#1a1a1a] relative flex items-center justify-center">
+              {/* Grid lines for map feel */}
+              <div className="absolute inset-0 opacity-20 dark:opacity-10" style={{ backgroundImage: 'linear-gradient(#d2d2d7 1px, transparent 1px), linear-gradient(90deg, #d2d2d7 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+              <div className="relative z-10 flex flex-col items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-brand shadow-lg shadow-brand/30 flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-brand/10 text-brand rounded-xl">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg">Teléfonos</h3>
-                    <p className="text-slate-600 dark:text-slate-400 mt-1">
-                      982 848 503<br/>
-                      934 288 165
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-brand/10 text-brand rounded-xl">
-                    <Clock className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg">Horario de Atención</h3>
-                    <p className="text-slate-600 dark:text-slate-400 mt-1">
-                      Lunes a Viernes: 9:00 AM - 6:00 PM<br/>
-                      Sábados: 9:00 AM - 1:00 PM<br/>
-                      Domingos: Cerrado
-                    </p>
-                  </div>
+                <div className="bg-white dark:bg-[#1d1d1f] rounded-xl px-4 py-2 shadow-lg border border-[#d2d2d7]/40 dark:border-[#2a2a2a]">
+                  <p className="text-xs font-semibold text-[#1d1d1f] dark:text-white">Apple Express</p>
+                  <p className="text-[10px] text-[#6e6e73]">Calle Oslo 198, Ate</p>
                 </div>
               </div>
             </div>
-          </motion.div>
 
-          {/* Map Placeholder */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="h-full min-h-[400px] bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden relative shadow-xl shadow-brand/5"
-          >
-            {/* Visual representation of a map */}
-            <div className="absolute inset-0 bg-slate-100 dark:bg-slate-800 flex flex-col items-center justify-center">
-              <MapPin className="w-12 h-12 text-brand mb-4 animate-bounce" />
-              <p className="text-slate-500 font-medium text-center px-4">Mapa Interactivo<br/><span className="text-sm font-normal">Aquí se integrará Google Maps con la ubicación: Calle Oslo 198</span></p>
+            <div className="px-7 sm:px-10 py-6 sm:py-8">
+              <p className="text-sm text-[#1d1d1f] dark:text-white font-semibold mb-1">Calle Oslo 198, Oficina 201</p>
+              <p className="text-xs text-[#6e6e73] mb-5">Los Portales - Ate, Lima, Perú</p>
+              <a
+                href="https://maps.google.com/?q=Calle+Oslo+198+Ate+Lima"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-brand text-sm font-semibold hover:underline underline-offset-2 transition-all duration-200"
+              >
+                Abrir en Google Maps &rarr;
+              </a>
             </div>
           </motion.div>
+
         </div>
       </section>
 

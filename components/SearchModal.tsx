@@ -82,7 +82,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           <input
             ref={inputRef}
             type="text"
-            className="flex-1 bg-transparent border-0 focus:ring-0 px-4 text-base md:text-lg text-slate-900 dark:text-white placeholder:text-slate-400 outline-none"
+            className="flex-1 bg-transparent border-0 focus:ring-0 px-4 text-base text-slate-900 dark:text-white placeholder:text-slate-400 outline-none"
             placeholder="Buscar productos, modelos..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}

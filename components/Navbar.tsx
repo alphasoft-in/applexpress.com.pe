@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -14,143 +14,117 @@ const NAV_LINKS = [
   { name: "iPhone", href: "/iphone" },
   { name: "Watch", href: "/watch" },
   { name: "AirPods", href: "/airpods" },
-  { name: "Accesorios", href: "/accesorios" },
+  { name: "Accesorios", href: "/Accesorios" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
+    if (!sessionStorage.getItem("hasSeenBanner")) {
+      setIsBannerVisible(true);
+      sessionStorage.setItem("hasSeenBanner", "true");
+    }
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Auto-close banner after 10 seconds
   useEffect(() => {
     if (isBannerVisible) {
-      const timer = setTimeout(() => {
-        setIsBannerVisible(false);
-      }, 10000);
+      const timer = setTimeout(() => setIsBannerVisible(false), 10000);
       return () => clearTimeout(timer);
     }
   }, [isBannerVisible]);
 
+  // Close mobile menu on route change
+  useEffect(() => { setIsMobileMenuOpen(false); }, [pathname]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col">
-      {/* Top Announcement Banner */}
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Banner */}
       {isBannerVisible && (
-        <div className="relative bg-neutral-100 dark:bg-neutral-900 text-center py-2.5 px-10 sm:px-12 text-[0.8rem] sm:text-sm border-b border-neutral-200 dark:border-neutral-800">
-          <p className="max-w-7xl mx-auto text-slate-600 dark:text-slate-300">
-            <span className="hidden md:inline">Bienvenidos a FHARMAG SAC. Distribuidores oficiales e importadores de los mejores productos Apple en el Perú. </span>
-            <span className="md:hidden">Distribuidores oficiales de productos Apple en el Perú. </span>
-            <Link href="#" className="text-brand dark:text-brand-hover hover:underline font-medium whitespace-nowrap group inline-flex items-center align-middle translate-y-[1px]">
-              Saber más <ChevronRight className="w-3.5 h-3.5 ml-0.5 transition-transform group-hover:translate-x-0.5" />
+        <div className="relative bg-[#1d1d1f] text-center py-2 px-10 text-[0.72rem]">
+          <p className="max-w-7xl mx-auto text-[#a1a1a6]">
+            <span className="hidden sm:inline">Bienvenidos a Apple Express. Importadores directos desde EE.UU. </span>
+            <span className="sm:hidden">Importadores Apple en Perú. </span>
+            <Link href="#" className="text-[#2997ff] hover:underline font-medium inline-flex items-center gap-0.5">
+              Saber mas <ChevronRight className="w-3 h-3" />
             </Link>
           </p>
-          <button 
-            onClick={() => setIsBannerVisible(false)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors p-1 cursor-pointer"
-            aria-label="Cerrar anuncio"
-          >
-            <X className="w-4 h-4" />
+          <button onClick={() => setIsBannerVisible(false)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6e6e73] hover:text-white transition-colors p-1 cursor-pointer" aria-label="Cerrar">
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
 
-      <div
-        className={cn(
-          "transition-all duration-300 border-t-[3px] border-brand w-full",
+      {/* Nav bar */}
+      <div className={cn(
+          "w-full transition-all duration-300",
           isScrolled
-            ? "glass dark:glass-dark shadow-sm"
-            : "bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800"
-        )}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex flex-col hover:opacity-80 transition-opacity"
-          >
-            <span className="text-xl font-black tracking-tight text-brand dark:text-brand-hover leading-none">FHARMAG</span>
-            <span className="text-[0.65rem] font-semibold tracking-[0.2em] text-slate-500 uppercase leading-none mt-1">Store</span>
-          </Link>
+            ? "bg-[rgba(255,255,255,0.92)] dark:bg-[rgba(0,0,0,0.92)] backdrop-blur-2xl border-b border-[#d2d2d7]/40 dark:border-[#424245]/40"
+            : "bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(0,0,0,0.85)] backdrop-blur-xl"
+        )}>
+        <div className="max-w-[980px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-12">
+            <Link href="/" className="hover:opacity-70 transition-opacity duration-200 shrink-0">
+              <span className="text-sm font-semibold tracking-tight text-[#1d1d1f] dark:text-white">Apple Express</span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {NAV_LINKS.map((link) => {
+            {/* Desktop links */}
+            <nav className="hidden md:flex items-center gap-5 lg:gap-7">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname.startsWith(link.href);
+                return (
+                  <Link key={link.name} href={link.href} className={cn("text-[0.72rem] transition-colors duration-200 whitespace-nowrap", isActive ? "text-[#1d1d1f] dark:text-white font-medium" : "text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white")}>
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="flex items-center gap-4">
+              <button onClick={() => setIsSearchOpen(true)} className="cursor-pointer text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Buscar">
+                <Search className="w-4 h-4" />
+              </button>
+              <button className="cursor-pointer text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Bolsa">
+                <ShoppingBag className="w-4 h-4" />
+              </button>
+              <button className="cursor-pointer md:hidden text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Menu">
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[rgba(250,250,252,0.97)] dark:bg-[rgba(0,0,0,0.97)] backdrop-blur-xl border-t border-[#d2d2d7]/20 dark:border-[#424245]/20 w-full">
+          <nav className="max-w-[980px] mx-auto px-6 py-4 flex flex-col">
+            {NAV_LINKS.map((link, idx) => {
               const isActive = pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "text-sm transition-colors font-medium",
-                    isActive 
-                      ? "text-brand dark:text-brand-hover font-semibold"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                    "flex items-center justify-between py-4 text-base font-medium transition-colors",
+                    idx < NAV_LINKS.length - 1 ? "border-b border-[#d2d2d7]/30 dark:border-[#424245]/30" : "",
+                    isActive ? "text-brand" : "text-[#1d1d1f] dark:text-white"
                   )}
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
+                  <ChevronRight className="w-4 h-4 text-[#6e6e73]" />
                 </Link>
               );
             })}
           </nav>
-
-          {/* Actions */}
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => setIsSearchOpen(true)}
-              className="cursor-pointer text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
-            >
-              <Search className="w-5 h-5" />
-              <span className="sr-only">Buscar</span>
-            </button>
-            <button className="cursor-pointer text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="sr-only">Bolsa</span>
-            </button>
-            <button
-              className="cursor-pointer md:hidden text-neutral-800 dark:text-neutral-300"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-14 left-0 right-0 h-screen bg-white dark:bg-black p-4 z-40 flex flex-col space-y-4">
-          {NAV_LINKS.map((link) => {
-            const isActive = pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  "text-2xl font-semibold border-b border-neutral-200 dark:border-neutral-800 pb-2 transition-colors",
-                  isActive ? "text-brand dark:text-brand-hover" : "text-neutral-800 dark:text-neutral-300"
-                )}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
         </div>
       )}
 

@@ -1,68 +1,76 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+
+const ease: [number,number,number,number] = [0.16, 1, 0.3, 1];
 
 export function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+
+  const textY  = useTransform(scrollYProgress, [0, 1], ["0px", "-100px"]);
+  const textOp = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative min-h-screen w-full bg-white dark:bg-black overflow-hidden flex flex-col items-center justify-center pt-32">
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand/10 blur-[100px] rounded-full"></div>
-        <div className="absolute top-40 -left-40 w-96 h-96 bg-purple-500/10 blur-[100px] rounded-full"></div>
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
-        <motion.span 
-          initial={{ opacity: 0, y: 20 }}
+    <section
+      ref={ref}
+      className="relative w-full min-h-screen bg-[#fbfbfd] dark:bg-black overflow-hidden flex flex-col items-center justify-center"
+    >
+      <motion.div
+        style={{ y: textY, opacity: textOp }}
+        className="relative z-10 flex flex-col items-center text-center px-5 sm:px-8 max-w-4xl mx-auto w-full pt-20 sm:pt-24"
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-block py-1 px-3 rounded-full bg-brand/10 text-brand font-semibold text-sm mb-4 border border-brand/20"
+          transition={{ duration: 0.8, ease }}
+          className="text-[11px] sm:text-xs font-semibold text-[#2997ff] mb-4 sm:mb-5 tracking-[0.18em] uppercase"
         >
-          Nuevo Ingreso
-        </motion.span>
-        
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 sm:mb-6 text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto"
-        >
-          La mejor tecnología, <br className="hidden sm:block" /> ahora en Perú
-        </motion.h2>
-
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="text-sm sm:text-base md:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
-        >
-          Importamos directamente de Estados Unidos. Garantía total, seguridad en tu compra y los últimos modelos disponibles.
+          Nuevo ingreso
         </motion.p>
 
-        <motion.div 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-6 sm:px-0"
+          transition={{ duration: 0.9, delay: 0.08, ease }}
+          className="text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-5 text-[#1d1d1f] dark:text-white tracking-tight leading-[1.07]"
         >
-          <Link 
-            href="/mac" 
-            className="w-full sm:w-auto justify-center bg-brand text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold hover:bg-brand-hover transition-colors shadow-lg shadow-brand/25 flex items-center gap-2 text-sm sm:text-base md:text-lg"
+          La mejor tecnología,<br className="hidden sm:block" />{" "}ahora en Perú.
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.16, ease }}
+          className="text-base sm:text-lg md:text-xl font-medium text-[#6e6e73] dark:text-[#86868b] mb-9 sm:mb-11 max-w-xl mx-auto leading-relaxed"
+        >
+          Importamos directamente desde Estados Unidos. Garantía total, los últimos modelos y seguridad en tu compra.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.24, ease }}
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto"
+        >
+          <Link
+            href="/mac"
+            className="w-full sm:w-auto text-center bg-[#1d1d1f] dark:bg-white text-white dark:text-black px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-black dark:hover:bg-[#e8e8ed] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
-            Ver MacBooks <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            Ver MacBooks
           </Link>
-          <a 
-            href="https://wa.me/51982848503?text=Hola,%20vengo%20de%20la%20web%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n"
+          <a
+            href="https://wa.me/51934288165?text=Hola,%20vengo%20de%20la%20web%20y%20me%20gustaria%20mas%20Información"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto text-center bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-sm sm:text-base md:text-lg"
+            className="w-full sm:w-auto text-center bg-transparent text-[#1d1d1f] dark:text-white px-8 py-3.5 rounded-full font-semibold text-sm border border-[#1d1d1f]/25 dark:border-white/25 hover:border-[#1d1d1f]/60 dark:hover:border-white/50 transition-all duration-200"
           >
-            Contáctanos por WhatsApp
+            Contáctanos
           </a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
