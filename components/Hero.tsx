@@ -53,12 +53,14 @@ export function Hero() {
           >
             Ver MacBooks <ArrowRight className="w-5 h-5" />
           </Link>
-          <Link 
-            href="/contacto" 
+          <a 
+            href="https://wa.me/51982848503?text=Hola,%20vengo%20de%20la%20web%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
           >
-            Contáctanos
-          </Link>
+            Contáctanos por WhatsApp
+          </a>
         </motion.div>
       </div>
     </section>

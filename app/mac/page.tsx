@@ -41,9 +41,14 @@ function MacBookCard({ mac, idx }: { mac: any; idx: number }) {
         >
           Ver características
         </Link>
-        <button className="w-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-3.5 rounded-xl font-semibold transition-all duration-300">
+        <a 
+          href={`https://wa.me/51982848503?text=Hola,%20me%20interesa%20la%20${encodeURIComponent(mac.model)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full text-center bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-3.5 rounded-xl font-semibold transition-all duration-300"
+        >
           Me interesa
-        </button>
+        </a>
       </div>
     </motion.div>
   );

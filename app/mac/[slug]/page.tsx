@@ -84,12 +84,22 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="flex-1 bg-brand text-white py-4 rounded-xl font-semibold hover:bg-brand-hover transition-all duration-300 shadow-lg shadow-brand/20 text-lg">
+                <a 
+                  href={`https://wa.me/51982848503?text=Hola,%20quiero%20comprar%20la%20${encodeURIComponent(mac.model)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center bg-brand text-white py-4 rounded-xl font-semibold hover:bg-brand-hover transition-all duration-300 shadow-lg shadow-brand/20 text-lg"
+                >
                   Comprar ahora
-                </button>
-                <button className="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-4 rounded-xl font-semibold transition-all duration-300 text-lg">
+                </a>
+                <a 
+                  href={`https://wa.me/51982848503?text=Hola,%20tengo%20una%20consulta%20sobre%20la%20${encodeURIComponent(mac.model)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 py-4 rounded-xl font-semibold transition-all duration-300 text-lg"
+                >
                   Consultar por WhatsApp
-                </button>
+                </a>
               </div>
             </div>
           </div>

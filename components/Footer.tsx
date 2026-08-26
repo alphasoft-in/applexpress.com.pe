@@ -38,7 +38,10 @@ export function Footer() {
           <div className="space-y-6">
             <div>
               <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-3 flex items-center"><Phone className="w-4 h-4 mr-2 text-brand" /> Contacto</h4>
-              <p className="text-sm text-slate-500 leading-relaxed">982 848 503<br/>934 288 165</p>
+              <p className="text-sm text-slate-500 leading-relaxed flex flex-col gap-1">
+                <a href="https://wa.me/51982848503?text=Hola,%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">982 848 503</a>
+                <a href="https://wa.me/51934288165?text=Hola,%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">934 288 165</a>
+              </p>
             </div>
             <div>
               <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-3 flex items-center"><CreditCard className="w-4 h-4 mr-2 text-brand" /> Pagos y Cuentas</h4>
