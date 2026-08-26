@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -60,15 +62,23 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm text-neutral-800 dark:text-neutral-300 hover:text-black dark:hover:text-white transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={cn(
+                    "text-sm transition-colors font-medium",
+                    isActive 
+                      ? "text-brand dark:text-brand-hover font-semibold"
+                      : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Actions */}
@@ -99,16 +109,22 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-14 left-0 right-0 h-screen bg-white dark:bg-black p-4 z-40 flex flex-col space-y-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-2xl font-semibold border-b border-neutral-200 dark:border-neutral-800 pb-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-2xl font-semibold border-b border-neutral-200 dark:border-neutral-800 pb-2 transition-colors",
+                  isActive ? "text-brand dark:text-brand-hover" : "text-neutral-800 dark:text-neutral-300"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>
