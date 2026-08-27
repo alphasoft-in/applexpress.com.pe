@@ -33,7 +33,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m12021-512.png"
   },
   {
     slug: "macbook-pro-16-m1-2021-1tb",
