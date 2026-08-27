@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -9,7 +10,7 @@ const INFO = [
   {
     Icon: MapPin,
     title: "Dirección",
-    lines: ["Calle Oslo 198, Oficina 201", "Los Portales - Ate, Lima"],
+    lines: ["Calle Oslo 198, Oficina 201", "Los Portales - Ate, Lima", "Ref: Altura de Av. Separadora Industrial"],
   },
   {
     Icon: Phone,
@@ -98,8 +99,9 @@ export function TiendaClient() {
                 href="https://wa.me/51934288165?text=Hola,%20quiero%20coordinar%20una%20visita%20a%20la%20tienda"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full block text-center bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 rounded-full text-sm font-semibold transition-colors duration-200"
+                className="w-full flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 rounded-full text-sm font-semibold transition-colors duration-200 shadow-sm"
               >
+                <FaWhatsapp className="w-4 h-4 shrink-0" />
                 Coordinar visita
               </a>
             </div>
@@ -112,29 +114,47 @@ export function TiendaClient() {
             transition={{ duration: 0.8, delay: 0.3, ease }}
             className="bg-white dark:bg-[#111111] rounded-2xl sm:rounded-3xl border border-[#d2d2d7]/40 dark:border-[#2a2a2a] overflow-hidden"
           >
-            {/* Map placeholder with Apple Maps aesthetic */}
-            <div className="h-56 sm:h-72 lg:h-80 bg-[#f5f5f7] dark:bg-[#1a1a1a] relative flex items-center justify-center">
-              {/* Grid lines for map feel */}
-              <div className="absolute inset-0 opacity-20 dark:opacity-10" style={{ backgroundImage: 'linear-gradient(#d2d2d7 1px, transparent 1px), linear-gradient(90deg, #d2d2d7 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-              <div className="relative z-10 flex flex-col items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#0071e3] shadow-lg shadow-[#0071e3]/30 flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div className="bg-white dark:bg-[#1d1d1f] rounded-xl px-4 py-2 shadow-lg border border-[#d2d2d7]/40 dark:border-[#2a2a2a]">
-                  <p className="text-xs font-semibold text-[#1d1d1f] dark:text-white">Apple Express</p>
-                  <p className="text-[10px] text-[#6e6e73]">Calle Oslo 198, Ate</p>
-                </div>
+            {/* Clean Vector Map Embed */}
+            <div className="h-64 sm:h-72 lg:h-80 w-full relative bg-[#f5f5f7] dark:bg-[#1a1a1a] overflow-hidden border-b border-[#e8e8ed] dark:border-[#2a2a2a]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.6918563391438!2d-76.93287282493888!3d-12.044654788191982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c6c06a38221b%3A0x6b8408f6153724c9!2sCalle%20Oslo%20198%2C%20Ate%2015012!5e0!3m2!1ses!2spe!4v1787851382209!5m2!1ses!2spe"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="w-full h-full filter saturate-[1.1] contrast-[1.02]"
+              />
+              {/* Floating Apple-style pin badge */}
+              <div className="absolute top-3 left-3 bg-white/95 dark:bg-[#1d1d1f]/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-black/5 dark:border-white/10 shadow-md flex items-center gap-1.5 pointer-events-none">
+                <span className="w-2 h-2 rounded-full bg-[#0071e3] animate-pulse" />
+                <span className="text-[11px] font-semibold text-[#1d1d1f] dark:text-white">Apple Express · Ate</span>
               </div>
             </div>
 
-            <div className="px-7 sm:px-10 py-6 sm:py-8">
-              <p className="text-sm text-[#1d1d1f] dark:text-white font-semibold mb-1">Calle Oslo 198, Oficina 201</p>
-              <p className="text-xs text-[#6e6e73] mb-5">Los Portales - Ate, Lima, Perú</p>
+            <div className="px-7 sm:px-10 py-6 sm:py-8 space-y-4">
+              <div>
+                <p className="text-[10px] font-semibold text-[#6e6e73] uppercase tracking-[0.16em] mb-1">Ubicación</p>
+                <p className="text-[15px] text-[#1d1d1f] dark:text-white font-semibold">Calle Oslo 198, Oficina 201</p>
+                <p className="text-xs text-[#6e6e73]">Urb. Los Portales — Ate, Lima, Perú</p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-[#f5f5f7] dark:bg-[#1a1a1a] border border-[#e8e8ed] dark:border-[#2a2a2a]">
+                <p className="text-[11px] font-semibold text-[#1d1d1f] dark:text-white mb-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3] shrink-0" />
+                  Referencia de llegada:
+                </p>
+                <p className="text-xs text-[#6e6e73] dark:text-[#86868b] leading-relaxed">
+                  A la altura de la Av. Separadora Industrial, cerca a Mayorazgo y a pocos minutos del Óvalo Huarochirí / Real Plaza Puruchuco.
+                </p>
+              </div>
+
               <a
-                href="https://maps.google.com/?q=Calle+Oslo+198+Ate+Lima"
+                href="https://maps.google.com/?q=-12.0446548,-76.9328728"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[#0071e3] hover:text-[#0077ed] text-sm font-semibold hover:underline underline-offset-2 transition-colors duration-200"
+                className="inline-flex items-center gap-1.5 text-[#0071e3] hover:text-[#0077ed] text-sm font-semibold hover:underline underline-offset-2 transition-colors duration-200 pt-1"
               >
                 Abrir en Google Maps &rarr;
               </a>

@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa6";
 
 const CATEGORIES = [
@@ -89,7 +89,7 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
           <div className="text-xs leading-relaxed">
             <p className="text-white font-medium mb-0.5">FHARMAG S.A.C &mdash; RUC: 20612083950</p>
-            <p>Importador independiente. No afiliado con Apple Inc.</p>
+            <p>Importación directa de tecnología original desde Estados Unidos.</p>
           </div>
           <p className="text-xs whitespace-nowrap text-[#6e6e73]">
             &copy; {new Date().getFullYear()} Apple Express

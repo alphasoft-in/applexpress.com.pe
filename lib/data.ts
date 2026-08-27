@@ -45,7 +45,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m12021-1tb.png"
   },
   {
     slug: "macbook-pro-16-m1-2021-32gb-1tb",
@@ -57,7 +57,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m12021-1tb.png"
   },
   {
     slug: "macbook-pro-16-m1-max-2021-32gb-1tb",
@@ -70,7 +70,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m12021-1tb.png"
   },
   {
     slug: "macbook-pro-16-m2-2023-16gb-512gb",
@@ -82,7 +82,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m22023-512.png"
   },
   {
     slug: "macbook-pro-16-m2-2023-32gb-512gb",
@@ -94,7 +94,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m22023-512.png"
   },
   {
     slug: "macbook-pro-16-m3-2024-36gb-1tb",
@@ -106,7 +106,7 @@ export const MACBOOKS = [
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook16-m32024-1.png"
   },
   {
     slug: "macbook-pro-16-2019-i7-16gb-512gb-5300",
@@ -119,7 +119,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro16-corei7-512.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-32gb-1tb-5300",
@@ -132,7 +132,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro16-corei7-1tb.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-32gb-1tb-5500",
@@ -145,7 +145,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro32-corei9-1tb.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-32gb-2tb-5500",
@@ -158,7 +158,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro32-corei9-2tb.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-64gb-512gb-5500-4gb",
@@ -171,7 +171,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro64-corei9-512.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-64gb-1tb-5500-4gb",
@@ -184,7 +184,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro64-corei9-1.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-64gb-1tb-5500-8gb",
@@ -197,7 +197,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro64-corei9-1-8.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-64gb-2tb-5500-8gb",
@@ -210,7 +210,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro64-corei9-2-8.png"
   },
   {
     slug: "macbook-pro-16-2019-i9-64gb-1tb-5600-8gb",
@@ -223,7 +223,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/core/macbookpro64-corei9-2-8.png"
   }
 ];
 

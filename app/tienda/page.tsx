@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { TiendaClient } from "@/components/TiendaClient";
@@ -32,8 +32,8 @@ const tiendaJsonLd = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: -12.0432,
-    longitude: -76.9352,
+    latitude: -12.0446548,
+    longitude: -76.9328728,
   },
   openingHoursSpecification: [
     {
