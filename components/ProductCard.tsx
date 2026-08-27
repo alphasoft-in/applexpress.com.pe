@@ -25,11 +25,15 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
       className="group flex flex-col bg-white dark:bg-[#161617] rounded-2xl overflow-hidden border border-[#e8e8ed] dark:border-[#2a2a2a] hover:shadow-xl hover:shadow-black/[0.07] dark:hover:shadow-black/40 transition-shadow duration-300"
     >
       {/* Image */}
-      <div className="relative overflow-hidden bg-[#f5f5f7] dark:bg-[#1c1c1e]" style={{ aspectRatio: '4/3' }}>
+      <div className="relative overflow-hidden bg-[#f5f5f7] dark:bg-[#1c1c1e] flex items-center justify-center" style={{ aspectRatio: '4/3' }}>
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+          className={`w-full h-full ${
+            image.endsWith(".png") || image.startsWith("/")
+              ? "object-contain p-4"
+              : "object-cover"
+          } group-hover:scale-[1.04] transition-transform duration-700 ease-out`}
         />
         {badge && (
           <span className="absolute top-3 left-3 px-2.5 py-1 bg-white/90 dark:bg-black/70 backdrop-blur-sm rounded-full text-[10px] font-bold text-[#1d1d1f] dark:text-white tracking-wide shadow-sm">

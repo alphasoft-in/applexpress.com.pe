@@ -9,7 +9,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 13.3\"",
     battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
-    image: "/demo.png"
+    image: "/mac/macbook13-m12020.png"
   },
   {
     slug: "macbook-pro-13-m1-2020-512gb",
@@ -21,7 +21,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 13.3\"",
     battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
-    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    image: "/mac/macbook13-m12020.png"
   },
   {
     slug: "macbook-pro-16-m1-2021-512gb",
