@@ -21,7 +21,7 @@ export const MACBOOKS = [
     screen: "Pantalla Retina de 13.3\"",
     battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
-    image: "/mac/macbook13-m12020.png"
+    image: "/mac/macbook13-m12020-512.png"
   },
   {
     slug: "macbook-pro-16-m1-2021-512gb",
