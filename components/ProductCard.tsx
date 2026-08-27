@@ -31,7 +31,7 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
           alt={name}
           className={`w-full h-full ${
             image.endsWith(".png") || image.startsWith("/")
-              ? "object-contain p-4"
+              ? "object-contain p-2.5"
               : "object-cover"
           } group-hover:scale-[1.04] transition-transform duration-700 ease-out`}
         />
