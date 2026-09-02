@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { ProductActions } from "@/components/admin/ProductActions";
+import { SearchProduct } from "@/components/admin/SearchProduct";
 
 export const revalidate = 0; // Disable cache for this page
 
@@ -10,18 +11,24 @@ const PAGE_SIZE = 10;
 export default async function AdminProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; q?: string }>;
 }) {
   const resolvedParams = await searchParams;
   const currentPage = parseInt(resolvedParams.page || "1");
+  const searchQuery = resolvedParams.q || "";
   const from = (currentPage - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
 
-  const { data: products, error, count } = await supabase
+  let query = supabase
     .from("products")
     .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .range(from, to);
+    .order("created_at", { ascending: false });
+
+  if (searchQuery) {
+    query = query.or(`model.ilike.%${searchQuery}%,category.ilike.%${searchQuery}%`);
+  }
+
+  const { data: products, error, count } = await query.range(from, to);
 
   if (error) {
     console.error("Error fetching products:", error);
@@ -38,13 +45,16 @@ export default async function AdminProductsPage({
             Gestiona el catálogo de productos de la tienda.
           </p>
         </div>
-        <Link
-          href="/admin/productos/nuevo"
-          className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          Nuevo Producto
-        </Link>
+        <div className="flex items-center gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+          <SearchProduct />
+          <Link
+            href="/admin/productos/nuevo"
+            className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors shrink-0"
+          >
+            <Plus className="w-4 h-4" />
+            Nuevo Producto
+          </Link>
+        </div>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">

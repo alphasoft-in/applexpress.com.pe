@@ -46,7 +46,7 @@ export function ProductActions({ productId }: ProductActionsProps) {
       <button 
         onClick={handleDelete}
         disabled={isDeleting}
-        className="text-red-500 hover:text-red-700 transition-colors p-1 disabled:opacity-50" 
+        className="cursor-pointer text-red-500 hover:text-red-700 transition-colors p-1 disabled:opacity-50" 
         title="Eliminar"
       >
         <Trash2 className="w-4 h-4" />

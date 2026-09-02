@@ -110,7 +110,7 @@ export default function ConfiguracionPage() {
           <button 
             onClick={handleSubmit} 
             disabled={saving} 
-            className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-[#0071e3] rounded-full shadow-sm hover:bg-[#0077ed] transition-all disabled:opacity-50 active:scale-95"
+            className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium cursor-pointer text-white cursor-pointer bg-[#0071e3] rounded-full shadow-sm hover:bg-[#0077ed] transition-all disabled:opacity-50 active:scale-95"
           >
             {saving ? (
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

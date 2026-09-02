@@ -34,7 +34,7 @@ export function CompareBar() {
           </Link>
           <button
             onClick={clearComparison}
-            className="p-1.5 text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white transition-colors"
+            className="cursor-pointer p-1.5 text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white transition-colors"
             aria-label="Limpiar comparación"
             title="Limpiar comparación"
           >
