@@ -153,7 +153,7 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
             </StaggerItem>
 
             <StaggerItem>
-              <PurchaseOptions productName={item.model} />
+              <PurchaseOptions productName={item.model} productSpecs={[(item as any).compatibility, (item as any).extra].filter(Boolean).join(" · ")} />
             </StaggerItem>
           </StaggerContainer>
         </div>

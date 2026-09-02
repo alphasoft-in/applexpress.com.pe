@@ -155,7 +155,7 @@ export default async function IPadDetailPage({ params }: { params: Promise<{ slu
             </StaggerItem>
 
             <StaggerItem>
-              <PurchaseOptions productName={item.model} />
+              <PurchaseOptions productName={item.model} productSpecs={[item.chip, item.storage, (item as any).extra].filter(Boolean).join(" · ")} />
             </StaggerItem>
           </StaggerContainer>
         </div>

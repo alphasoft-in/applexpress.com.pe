@@ -176,7 +176,7 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
 
             {/* Purchase options with delivery selector */}
             <StaggerItem>
-              <PurchaseOptions productName={mac.model} />
+              <PurchaseOptions productName={mac.model} productSpecs={[mac.chip, mac.ram, mac.storage, (mac as any).extra].filter(Boolean).join(" · ")} />
             </StaggerItem>
 
           </StaggerContainer>

@@ -107,7 +107,7 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, st
         {/* CTAs */}
         <div className="flex flex-col items-center gap-2 pt-1">
           <a
-            href={waLink}
+            href={`https://wa.me/51982848503?text=${encodeURIComponent(`Hola, quiero consultar sobre: ${name}${specs ? ` (${specs})` : ""}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center gap-1.5 bg-[#0071e3] hover:bg-[#0077ed] text-white rounded-full py-[9px] text-[13px] font-semibold transition-colors duration-200"

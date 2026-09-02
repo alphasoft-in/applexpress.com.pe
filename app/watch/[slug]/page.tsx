@@ -154,7 +154,7 @@ export default async function WatchDetailPage({ params }: { params: Promise<{ sl
             </StaggerItem>
 
             <StaggerItem>
-              <PurchaseOptions productName={item.model} />
+              <PurchaseOptions productName={item.model} productSpecs={[(item as any).case, (item as any).strap, (item as any).extra].filter(Boolean).join(" · ")} />
             </StaggerItem>
           </StaggerContainer>
         </div>

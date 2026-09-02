@@ -32,14 +32,16 @@ const DELIVERY = [
 
 interface Props {
   productName: string;
+  productSpecs?: string;
 }
 
-export function PurchaseOptions({ productName }: Props) {
+export function PurchaseOptions({ productName, productSpecs }: Props) {
   const [selected, setSelected] = useState<string>("envio");
 
   const deliveryLabel = DELIVERY.find((d) => d.id === selected)?.label ?? "";
+  const specsText = productSpecs ? ` (${productSpecs})` : "";
   const waText = encodeURIComponent(
-    `Hola, quiero consultar sobre la ${productName}. Método de entrega preferido: ${deliveryLabel}.`
+    `Hola, quiero consultar sobre: ${productName}${specsText}. Método de entrega preferido: ${deliveryLabel}.`
   );
 
   return (
@@ -102,16 +104,27 @@ export function PurchaseOptions({ productName }: Props) {
         })}
       </div>
 
-      {/* CTA */}
-      <a
-        href={`https://wa.me/51934288165?text=${waText}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200 mt-1"
-      >
-        {WA_ICON}
-        Consultar por WhatsApp
-      </a>
+      {/* CTAs */}
+      <div className="flex flex-col sm:flex-row gap-2 mt-1">
+        <a
+          href={`https://wa.me/51934288165?text=${waText}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"
+        >
+          {WA_ICON}
+          Consultar (Asesor 1)
+        </a>
+        <a
+          href={`https://wa.me/51982848503?text=${waText}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-2 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-[#f5f5f7] dark:text-black text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"
+        >
+          {WA_ICON}
+          Consultar (Asesor 2)
+        </a>
+      </div>
 
       <p className="text-[11px] text-[#86868b] text-center leading-relaxed">
         Te responderemos en menos de 24 horas.
