@@ -302,6 +302,76 @@ export const IPHONES = [
     price: "S/ 5,999",
     stock: 9,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "iphone-16-128gb",
+    model: "iPhone 16",
+    chip: "A18",
+    ram: "8GB",
+    storage: "128GB",
+    screen: "6.1\" Super Retina XDR",
+    battery: "Hasta 22 horas de video",
+    camera: "Cámara Fusion de 48 MP y Ultra gran angular",
+    extra: "Control de Cámara",
+    price: "S/ 4,699",
+    stock: 12,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "iphone-16-pro-128gb",
+    model: "iPhone 16 Pro",
+    chip: "A18 Pro",
+    ram: "8GB",
+    storage: "128GB",
+    screen: "6.3\" ProMotion 120Hz",
+    battery: "Hasta 27 horas de video",
+    camera: "Cámara Fusion de 48 MP con Teleobjetivo 5x",
+    extra: "Titanio",
+    price: "S/ 5,699",
+    stock: 5,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "iphone-16-pro-max-256gb",
+    model: "iPhone 16 Pro Max",
+    chip: "A18 Pro",
+    ram: "8GB",
+    storage: "256GB",
+    screen: "6.9\" ProMotion 120Hz",
+    battery: "Hasta 33 horas de video",
+    camera: "Cámara Fusion de 48 MP con Teleobjetivo 5x",
+    extra: "Titanio",
+    price: "S/ 6,699",
+    stock: 4,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "iphone-17-128gb",
+    model: "iPhone 17",
+    chip: "A19",
+    ram: "8GB",
+    storage: "128GB",
+    screen: "6.1\" Super Retina XDR",
+    battery: "Hasta 24 horas de video",
+    camera: "Cámara Fusion de 48 MP mejorada",
+    extra: "Control de Cámara avanzado",
+    price: "S/ 4,999",
+    stock: 0,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    slug: "iphone-17-pro-max-256gb",
+    model: "iPhone 17 Pro Max",
+    chip: "A19 Pro",
+    ram: "12GB",
+    storage: "256GB",
+    screen: "6.9\" ProMotion 120Hz",
+    battery: "Hasta 35 horas de video",
+    camera: "Sistema de cámaras Pro ultra avanzado",
+    extra: "Titanio",
+    price: "S/ 7,199",
+    stock: 2,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
