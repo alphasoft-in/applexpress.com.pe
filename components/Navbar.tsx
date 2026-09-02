@@ -78,22 +78,22 @@ export function Navbar() {
               {NAV_LINKS.map((link) => {
                 const isActive = pathname.startsWith(link.href);
                 return (
-                  <Link key={link.name} href={link.href} className={cn("text-[0.72rem] transition-colors duration-200 whitespace-nowrap", isActive ? "text-[#1d1d1f] dark:text-white font-medium" : "text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white")}>
+                  <Link key={link.name} href={link.href} className={cn("text-sm lg:text-[15px] transition-colors duration-200 whitespace-nowrap", isActive ? "text-[#1d1d1f] dark:text-white font-medium" : "text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white")}>
                     {link.name}
                   </Link>
                 );
               })}
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <button onClick={() => setIsSearchOpen(true)} className="cursor-pointer text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Buscar">
-                <Search className="w-4 h-4" />
+                <Search className="w-5 h-5" />
               </button>
               <button className="cursor-pointer text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Bolsa">
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-5 h-5" />
               </button>
               <button className="cursor-pointer md:hidden text-[#1d1d1f] dark:text-white opacity-70 hover:opacity-100 transition-opacity" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Menu">
-                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
