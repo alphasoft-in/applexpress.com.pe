@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeftRight, Check } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { useCompareStore } from "@/lib/store/useCompareStore";
 
 interface ProductCardProps {
   name: string;
@@ -12,10 +15,26 @@ interface ProductCardProps {
   href: string;
   waLink: string;
   badge?: string;
+  stock?: number;
   idx?: number;
 }
 
-export function ProductCard({ name, specs, price, image, href, waLink, badge, idx = 0 }: ProductCardProps) {
+export function ProductCard({ name, specs, price, image, href, waLink, badge, stock, idx = 0 }: ProductCardProps) {
+  const { selectedSlugs, toggleProduct } = useCompareStore();
+  
+  // Extract category and slug from href (e.g. "/mac/macbook-pro")
+  const parts = href.split('/').filter(Boolean);
+  const category = parts[0];
+  const slug = parts[1];
+
+  const isSelected = slug ? selectedSlugs.includes(slug) : false;
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (slug && category) {
+      toggleProduct(slug, category);
+    }
+  };
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -26,10 +45,12 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
     >
       {/* Image */}
       <div className="relative overflow-hidden bg-[#f5f5f7] dark:bg-[#1c1c1e] flex items-center justify-center" style={{ aspectRatio: '4/3' }}>
-        <img
+        <Image
           src={image}
           alt={name}
-          className={`w-full h-full ${
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className={`${
             image.endsWith(".png") || image.startsWith("/")
               ? "object-contain p-2.5"
               : "object-cover"
@@ -39,6 +60,21 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
           <span className="absolute top-3 left-3 px-2.5 py-1 bg-white/90 dark:bg-black/70 backdrop-blur-sm rounded-full text-[10px] font-bold text-[#1d1d1f] dark:text-white tracking-wide shadow-sm">
             {badge}
           </span>
+        )}
+        
+        {slug && category && (
+          <button
+            onClick={handleCompareClick}
+            className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all shadow-sm cursor-pointer ${
+              isSelected 
+                ? "bg-[#0071e3] text-white" 
+                : "bg-white/80 dark:bg-black/60 text-[#1d1d1f] dark:text-white hover:bg-white dark:hover:bg-black/80"
+            }`}
+            aria-label="Comparar producto"
+            title="Comparar producto"
+          >
+            {isSelected ? <Check className="w-4 h-4" /> : <ArrowLeftRight className="w-4 h-4" />}
+          </button>
         )}
       </div>
 
@@ -56,10 +92,17 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
           )}
         </div>
 
-        {/* Price */}
-        <p className="text-[13px] sm:text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-          Desde {price}
-        </p>
+        {/* Price & Stock */}
+        <div>
+          <p className="text-[13px] sm:text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+            Desde {price}
+          </p>
+          <div className="mt-2.5">
+            <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
+              {stock ? `Stock: ${stock} unidades` : "Stock disponible"}
+            </span>
+          </div>
+        </div>
 
         {/* CTAs */}
         <div className="flex flex-col items-center gap-2 pt-1">
@@ -69,8 +112,8 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, id
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center gap-1.5 bg-[#0071e3] hover:bg-[#0077ed] text-white rounded-full py-[9px] text-[13px] font-semibold transition-colors duration-200"
           >
-            <Heart className="w-3.5 h-3.5" strokeWidth={2.5} />
             Me interesa
+            <FaWhatsapp className="w-4 h-4" />
           </a>
           <Link
             href={href}

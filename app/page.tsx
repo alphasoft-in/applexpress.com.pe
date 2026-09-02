@@ -1,4 +1,4 @@
-﻿import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ShippingSection } from "@/components/ShippingSection";
@@ -39,15 +39,15 @@ const localBusinessJsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "09:00",
       closes: "18:00",
     },
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday"],
+      dayOfWeek: ["Sunday"],
       opens: "09:00",
-      closes: "13:00",
+      closes: "14:00",
     },
   ],
   sameAs: [

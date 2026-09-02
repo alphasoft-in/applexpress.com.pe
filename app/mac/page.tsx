@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
@@ -39,6 +39,7 @@ export default function MacPage() {
               href={`/mac/${mac.slug}`}
               waLink={`https://wa.me/51934288165?text=Hola,%20me%20interesa%20la%20${encodeURIComponent(mac.model)}%20${encodeURIComponent(mac.storage || "")}`}
               badge={(mac as any).extra}
+              stock={(mac as any).stock}
             />
           ))}
         </div>

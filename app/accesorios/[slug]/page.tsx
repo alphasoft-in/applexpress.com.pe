@@ -1,4 +1,4 @@
-﻿import { ACCESSORIES } from "@/lib/data";
+import { ACCESSORIES } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { PurchaseOptions } from "@/components/PurchaseOptions";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export function generateStaticParams() {
   return ACCESSORIES.map((item) => ({ slug: item.slug }));
@@ -93,11 +94,13 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
           <FadeIn delay={0.1} className="w-full md:sticky md:top-24">
-            <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
-              <img
+            <div className="relative bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
+              <Image
                 src={item.image}
                 alt={item.model}
-                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
             </div>
           </FadeIn>
@@ -117,10 +120,18 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
               </h1>
             </StaggerItem>
 
+            {/* Price & Stock */}
             <StaggerItem>
-              <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-6 sm:mb-8">
-                Desde {item.price}
-              </p>
+              <div className="mb-6 sm:mb-8">
+                <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  Desde {item.price}
+                </p>
+                <div className="mt-2.5">
+                  <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
+                    {(item as any).stock ? `Stock: ${(item as any).stock} unidades` : "Stock disponible"}
+                  </span>
+                </div>
+              </div>
             </StaggerItem>
 
             <StaggerItem>

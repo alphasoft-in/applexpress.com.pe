@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
@@ -35,7 +35,7 @@ export default function IPadPage() {
               price={item.price} image={item.image}
               href={`/ipad/${item.slug}`}
               waLink={`https://wa.me/51934288165?text=Hola,%20me%20interesa%20el%20${encodeURIComponent(item.model)}`}
-              badge={(item as any).extra} />
+              badge={(item as any).extra} stock={(item as any).stock} />
           ))}
         </div>
       </section>

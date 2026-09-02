@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CompareBar } from "@/components/CompareBar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es-PE" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans text-slate-900 bg-slate-50 dark:bg-slate-950 dark:text-slate-100">
         {children}
+        <CompareBar />
       </body>
     </html>
   );

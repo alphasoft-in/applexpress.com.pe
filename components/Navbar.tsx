@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -10,9 +10,7 @@ import { SearchModal } from "@/components/SearchModal";
 const NAV_LINKS = [
   { name: "Tienda", href: "/tienda" },
   { name: "Mac", href: "/mac" },
-  { name: "iPad", href: "/ipad" },
   { name: "iPhone", href: "/iphone" },
-  { name: "Watch", href: "/watch" },
   { name: "AirPods", href: "/airpods" },
   { name: "Accesorios", href: "/Accesorios" },
 ];

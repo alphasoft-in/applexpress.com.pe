@@ -6,6 +6,7 @@ export const MACBOOKS = [
     ram: "16GB",
     storage: "256GB SSD",
     price: "S/ 2,299",
+    stock: 8,
     screen: "Pantalla Retina de 13.3\"",
     battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
@@ -18,6 +19,7 @@ export const MACBOOKS = [
     ram: "16GB",
     storage: "512GB SSD",
     price: "S/ 2,499",
+    stock: 7,
     screen: "Pantalla Retina de 13.3\"",
     battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
@@ -30,6 +32,7 @@ export const MACBOOKS = [
     ram: "16GB",
     storage: "512GB SSD",
     price: "S/ 3,299",
+    stock: 3,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -42,6 +45,7 @@ export const MACBOOKS = [
     ram: "16GB",
     storage: "1TB SSD",
     price: "S/ 3,499",
+    stock: 8,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -54,6 +58,7 @@ export const MACBOOKS = [
     ram: "32GB",
     storage: "1TB SSD",
     price: "S/ 4,299",
+    stock: 8,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -67,6 +72,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "32 Núcleos",
     price: "S/ 5,299",
+    stock: 5,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 21 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -79,6 +85,7 @@ export const MACBOOKS = [
     ram: "16GB",
     storage: "512GB SSD",
     price: "S/ 4,299",
+    stock: 5,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -91,6 +98,7 @@ export const MACBOOKS = [
     ram: "32GB",
     storage: "512GB SSD",
     price: "S/ 5,199",
+    stock: 10,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -103,6 +111,7 @@ export const MACBOOKS = [
     ram: "36GB",
     storage: "1TB SSD",
     price: "S/ 6,999",
+    stock: 2,
     screen: "Liquid Retina XDR de 16.2\"",
     battery: "Hasta 22 horas de batería",
     ports: "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3",
@@ -116,6 +125,7 @@ export const MACBOOKS = [
     storage: "512GB SSD",
     extra: "GPU 5300 4GB",
     price: "S/ 1,799",
+    stock: 3,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -129,6 +139,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "GPU 5300 4GB",
     price: "S/ 2,299",
+    stock: 2,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -142,6 +153,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "GPU 5500 8GB",
     price: "S/ 2,499",
+    stock: 3,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -155,6 +167,7 @@ export const MACBOOKS = [
     storage: "2TB SSD",
     extra: "GPU 5500 8GB",
     price: "S/ 2,599",
+    stock: 1,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -168,6 +181,7 @@ export const MACBOOKS = [
     storage: "512GB SSD",
     extra: "GPU 5500 4GB",
     price: "S/ 2,599",
+    stock: 7,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -181,6 +195,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "GPU 5500 4GB",
     price: "S/ 2,799",
+    stock: 2,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -194,6 +209,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "GPU 5500 8GB",
     price: "S/ 2,899",
+    stock: 1,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -207,6 +223,7 @@ export const MACBOOKS = [
     storage: "2TB SSD",
     extra: "GPU 5500 8GB",
     price: "S/ 3,199",
+    stock: 8,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -220,6 +237,7 @@ export const MACBOOKS = [
     storage: "1TB SSD",
     extra: "GPU 5600 8GB",
     price: "S/ 3,499",
+    stock: 7,
     screen: "Pantalla Retina de 16\"",
     battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
@@ -238,6 +256,7 @@ export const IPHONES = [
     battery: "Hasta 19 horas de video",
     camera: "Sistema de dos cámaras de 12 MP",
     price: "S/ 2,999",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -250,6 +269,7 @@ export const IPHONES = [
     battery: "Hasta 20 horas de video",
     camera: "Sistema avanzado de dos cámaras de 12 MP",
     price: "S/ 3,499",
+    stock: 5,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -263,6 +283,7 @@ export const IPHONES = [
     camera: "Gran angular de 48 MP y Ultra gran angular de 12 MP",
     extra: "Dynamic Island",
     price: "S/ 4,299",
+    stock: 1,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -276,6 +297,7 @@ export const IPHONES = [
     camera: "Sistema de cámaras Pro de 48 MP con Teleobjetivo 3x",
     extra: "Titanio",
     price: "S/ 5,299",
+    stock: 1,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -289,6 +311,7 @@ export const IPHONES = [
     camera: "Sistema de cámaras Pro de 48 MP con Teleobjetivo 5x",
     extra: "Titanio",
     price: "S/ 5,999",
+    stock: 9,
     image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -304,6 +327,7 @@ export const IPADS = [
     camera: "Cámara frontal ultra gran angular de 12 MP",
     ports: "Conector Lightning",
     price: "S/ 1,499",
+    stock: 7,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -316,6 +340,7 @@ export const IPADS = [
     camera: "Cámara frontal ultra gran angular de 12 MP en horizontal",
     ports: "Conector USB-C",
     price: "S/ 1,999",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -329,6 +354,7 @@ export const IPADS = [
     ports: "Conector USB-C",
     extra: "Chip M1",
     price: "S/ 2,899",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -341,6 +367,7 @@ export const IPADS = [
     camera: "Cámara frontal ultra gran angular de 12 MP",
     ports: "Conector USB-C",
     price: "S/ 3,499",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -354,6 +381,7 @@ export const IPADS = [
     ports: "Conector USB-C (Thunderbolt / USB 4)",
     extra: "Chip M2",
     price: "S/ 3,999",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -367,6 +395,7 @@ export const IPADS = [
     ports: "Conector USB-C (Thunderbolt / USB 4)",
     extra: "Chip M2",
     price: "S/ 5,499",
+    stock: 1,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -381,6 +410,7 @@ export const WATCHES = [
     battery: "Hasta 18 horas",
     waterResistance: "Resistente al agua (50 metros)",
     price: "S/ 1,199",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -393,6 +423,7 @@ export const WATCHES = [
     waterResistance: "Resistente al agua y al polvo (IP6X)",
     extra: "Gesto de doble toque",
     price: "S/ 1,899",
+    stock: 8,
     image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -405,6 +436,7 @@ export const WATCHES = [
     waterResistance: "Resistencia al agua de 100m, buceo hasta 40m",
     extra: "Titanio",
     price: "S/ 3,499",
+    stock: 2,
     image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -418,6 +450,7 @@ export const AIRPODS = [
     battery: "Hasta 24h con estuche",
     connectivity: "Bluetooth 5.0",
     price: "S/ 599",
+    stock: 5,
     image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -429,6 +462,7 @@ export const AIRPODS = [
     connectivity: "Bluetooth 5.0",
     extra: "Resistentes al agua",
     price: "S/ 899",
+    stock: 3,
     image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -440,6 +474,7 @@ export const AIRPODS = [
     connectivity: "Bluetooth 5.3",
     extra: "USB-C",
     price: "S/ 1,199",
+    stock: 6,
     image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -451,6 +486,7 @@ export const AIRPODS = [
     connectivity: "Bluetooth 5.0",
     extra: "Diadema premium",
     price: "S/ 2,499",
+    stock: 4,
     image: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -464,6 +500,7 @@ export const ACCESSORIES = [
     features: "Carga magnética, doble toque",
     connectivity: "Bluetooth",
     price: "S/ 599",
+    stock: 7,
     image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -475,6 +512,7 @@ export const ACCESSORIES = [
     connectivity: "Smart Connector",
     extra: "Para iPad",
     price: "S/ 1,299",
+    stock: 1,
     image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -485,6 +523,7 @@ export const ACCESSORIES = [
     features: "Carga rápida inalámbrica de hasta 15W",
     connectivity: "Cable integrado USB-C",
     price: "S/ 199",
+    stock: 10,
     image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
   },
   {
@@ -496,6 +535,7 @@ export const ACCESSORIES = [
     connectivity: "Puerto USB-C",
     extra: "Original",
     price: "S/ 129",
+    stock: 2,
     image: "https://images.unsplash.com/photo-1590825316499-c2921df12117?auto=format&fit=crop&w=800&q=80"
   }
 ];

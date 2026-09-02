@@ -8,6 +8,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import { PurchaseOptions } from "@/components/PurchaseOptions";
 
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export function generateStaticParams() {
   return MACBOOKS.map((mac) => ({ slug: mac.slug }));
@@ -110,11 +111,13 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
 
           {/* Image */}
           <FadeIn delay={0.1} className="w-full md:sticky md:top-24">
-            <div className="bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
-              <img
+            <div className="relative bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
+              <Image
                 src={mac.image}
                 alt={mac.model}
-                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               />
             </div>
           </FadeIn>
@@ -138,11 +141,18 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
               </h1>
             </StaggerItem>
 
-            {/* Price */}
+            {/* Price & Stock */}
             <StaggerItem>
-              <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-6 sm:mb-8">
-                Desde {mac.price}
-              </p>
+              <div className="mb-6 sm:mb-8">
+                <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  Desde {mac.price}
+                </p>
+                <div className="mt-2.5">
+                  <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
+                    {(mac as any).stock ? `Stock: ${(mac as any).stock} unidades` : "Stock disponible"}
+                  </span>
+                </div>
+              </div>
             </StaggerItem>
 
             {/* Specs */}

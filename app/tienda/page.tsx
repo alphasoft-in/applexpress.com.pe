@@ -38,15 +38,15 @@ const tiendaJsonLd = {
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "09:00",
       closes: "18:00",
     },
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Saturday"],
+      dayOfWeek: ["Sunday"],
       opens: "09:00",
-      closes: "13:00",
+      closes: "14:00",
     },
   ],
 };

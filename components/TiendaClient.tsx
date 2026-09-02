@@ -20,7 +20,7 @@ const INFO = [
   {
     Icon: Clock,
     title: "Horario",
-    lines: ["Lun - Vie: 9:00 - 18:00", "Sábado: 9:00 - 13:00", "Domingo: Cerrado"],
+    lines: ["Lun - Sab: 9:00 - 18:00", "Domingo: 9:00 - 14:00"],
   },
 ];
 
