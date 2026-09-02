@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { name: "Mac", href: "/mac" },
   { name: "iPhone", href: "/iphone" },
   { name: "AirPods", href: "/airpods" },
-  { name: "Accesorios", href: "/Accesorios" },
+  { name: "Accesorios", href: "/accesorios" },
 ];
 
 export function Navbar() {
