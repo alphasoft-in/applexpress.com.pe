@@ -94,9 +94,15 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, st
             Desde {price}
           </p>
           <div className="mt-2.5">
-            <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
-              {stock ? `Stock: ${stock} unidades` : "Stock disponible"}
-            </span>
+            {stock === 0 ? (
+              <span className="inline-block px-2.5 py-1 rounded-full bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400 text-[11px] font-semibold uppercase tracking-wider">
+                Agotado
+              </span>
+            ) : (
+              <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
+                {stock !== undefined && stock > 0 ? `Stock: ${stock} unidades` : "Stock disponible"}
+              </span>
+            )}
           </div>
         </div>
 

@@ -105,7 +105,7 @@ export default async function DetailPage({ params }: { params: Promise<{ slug: s
                   alt={item.model}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  className="object-contain p-8 mix-blend-multiply group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                 />
               ) : (
                 <div className="text-gray-400">Sin imagen</div>
