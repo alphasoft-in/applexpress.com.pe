@@ -96,13 +96,33 @@ export function Footer() {
             <h4 className="text-[0.65rem] font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">Contacto</h4>
             <ul className="space-y-2.5">
               <li>
-                <a href={`https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                <a 
+                  href={`https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-xs hover:text-white transition-colors"
+                  onClick={async () => {
+                    try {
+                      await supabase.from("whatsapp_clicks").insert([{ product_name: "Footer Link", delivery_method: "N/A", asesor: "Asesor 1" }]);
+                    } catch (e) {}
+                  }}
+                >
                   WhatsApp: +{settings.whatsapp_number}
                 </a>
               </li>
               {settings.whatsapp_number_2 && (
                 <li>
-                  <a href={`https://wa.me/${settings.whatsapp_number_2.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                  <a 
+                    href={`https://wa.me/${settings.whatsapp_number_2.replace(/\D/g, '')}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-xs hover:text-white transition-colors"
+                    onClick={async () => {
+                      try {
+                        await supabase.from("whatsapp_clicks").insert([{ product_name: "Footer Link", delivery_method: "N/A", asesor: "Asesor 2" }]);
+                      } catch (e) {}
+                    }}
+                  >
                     WhatsApp: +{settings.whatsapp_number_2}
                   </a>
                 </li>

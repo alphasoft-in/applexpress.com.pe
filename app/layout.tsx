@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CompareBar } from "@/components/CompareBar";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col font-sans text-slate-900 bg-slate-50 dark:bg-slate-950 dark:text-slate-100">
         {children}
         <CompareBar />
+        <AnalyticsTracker />
       </body>
     </html>
   );

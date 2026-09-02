@@ -67,6 +67,20 @@ export function PurchaseOptions({ productName, productSpecs }: Props) {
     `Hola, quiero consultar sobre: ${productName}${specsText}. Método de entrega preferido: ${deliveryLabel}.`
   );
 
+  const handleWAClick = async (asesor: string) => {
+    try {
+      await supabase.from("whatsapp_clicks").insert([
+        { 
+          product_name: productName,
+          delivery_method: deliveryLabel,
+          asesor: asesor
+        }
+      ]);
+    } catch (error) {
+      console.error("Error tracking WA click:", error);
+    }
+  };
+
   return (
     <div className="space-y-5">
 
@@ -133,6 +147,7 @@ export function PurchaseOptions({ productName, productSpecs }: Props) {
           href={`https://wa.me/${waNumbers.wa1}?text=${waText}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleWAClick("Asesor 1")}
           className="flex-1 flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"
         >
           {WA_ICON}
@@ -142,6 +157,7 @@ export function PurchaseOptions({ productName, productSpecs }: Props) {
           href={`https://wa.me/${waNumbers.wa2}?text=${waText}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleWAClick("Asesor 2")}
           className="flex-1 flex items-center justify-center gap-2 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-[#f5f5f7] dark:text-black text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"
         >
           {WA_ICON}
