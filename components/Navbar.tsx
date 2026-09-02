@@ -6,6 +6,7 @@ import { Search, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { SearchModal } from "@/components/SearchModal";
+import { supabase } from "@/lib/supabase";
 
 const NAV_LINKS = [
   { name: "Tienda", href: "/tienda" },
@@ -21,10 +22,32 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [bannerText, setBannerText] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
+    
+    // Fetch banner text from settings
+    async function fetchSettings() {
+      try {
+        const { data } = await supabase
+          .from("settings")
+          .select("banner_text")
+          .eq("id", 1)
+          .single();
+        
+        if (data && data.banner_text) {
+          setBannerText(data.banner_text);
+        } else {
+          setBannerText("Bienvenidos a Apple Express. Importadores directos desde EE.UU.");
+        }
+      } catch (error) {
+        setBannerText("Bienvenidos a Apple Express. Importadores directos desde EE.UU.");
+      }
+    }
+    fetchSettings();
+
     if (!sessionStorage.getItem("hasSeenBanner")) {
       setIsBannerVisible(true);
       sessionStorage.setItem("hasSeenBanner", "true");
@@ -48,8 +71,7 @@ export function Navbar() {
       {isBannerVisible && (
         <div className="relative bg-[#1d1d1f] text-center py-2 px-10 text-[0.72rem]">
           <p className="max-w-7xl mx-auto text-[#a1a1a6]">
-            <span className="hidden sm:inline">Bienvenidos a Apple Express. Importadores directos desde EE.UU. </span>
-            <span className="sm:hidden">Importadores Apple en Perú. </span>
+            <span>{bannerText} </span>
             <Link href="#" className="text-[#2997ff] hover:underline font-medium inline-flex items-center gap-0.5">
               Saber mas <ChevronRight className="w-3 h-3" />
             </Link>

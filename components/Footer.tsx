@@ -1,14 +1,16 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa6";
+import { supabase } from "@/lib/supabase";
 
 const CATEGORIES = [
   { name: "Mac", href: "/mac" },
   { name: "iPhone", href: "/iphone" },
   { name: "AirPods", href: "/airpods" },
-  { name: "Accesorios", href: "/Accesorios" },
+  { name: "Accesorios", href: "/accesorios" },
 ];
 
 const INFO_LINKS = [
@@ -20,6 +22,30 @@ const INFO_LINKS = [
 
 export function Footer() {
   const pathname = usePathname();
+  const [settings, setSettings] = useState({
+    whatsapp_number: "51999999999",
+    facebook_link: "https://facebook.com",
+    instagram_link: "https://instagram.com",
+    tiktok_link: "https://tiktok.com",
+  });
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const { data } = await supabase
+          .from("settings")
+          .select("*")
+          .eq("id", 1)
+          .single();
+        if (data) {
+          setSettings(data);
+        }
+      } catch (error) {
+        console.error("Error fetching settings in footer", error);
+      }
+    }
+    fetchSettings();
+  }, []);
 
   return (
     <footer className="bg-[#111111] text-[#6e6e73] border-t border-[#3a3a3c]">
@@ -69,13 +95,8 @@ export function Footer() {
             <h4 className="text-[0.65rem] font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">Contacto</h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="https://wa.me/51982848503" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
-                  982 848 503
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/51934288165" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
-                  934 288 165
+                <a href={`https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                  WhatsApp: +{settings.whatsapp_number}
                 </a>
               </li>
             </ul>
@@ -87,15 +108,21 @@ export function Footer() {
               Calle Oslo 198<br />Oficina 201, Ate<br />Lima, Perú
             </p>
             <div className="flex items-center gap-4 mt-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                <FaFacebook className="w-4 h-4" />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                <FaInstagram className="w-4 h-4" />
-              </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                <FaTiktok className="w-4 h-4" />
-              </a>
+              {settings.facebook_link && (
+                <a href={settings.facebook_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <FaFacebook className="w-4 h-4" />
+                </a>
+              )}
+              {settings.instagram_link && (
+                <a href={settings.instagram_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <FaInstagram className="w-4 h-4" />
+                </a>
+              )}
+              {settings.tiktok_link && (
+                <a href={settings.tiktok_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <FaTiktok className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
         </div>
