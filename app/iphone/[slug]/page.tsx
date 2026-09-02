@@ -24,7 +24,7 @@ export async function generateMetadata(
   if (!item) return {};
 
   const specs = [item.processor, item.memory, item.storage].filter(Boolean).join(", ");
-  const title = `${item.model} ${specs} en Peru`.trim();
+  const title = `${item.model} ${specs} en Perú`.trim();
   const description = `Compra ${item.model} con ${specs} importado desde EE.UU. ${item.price}. Garantia incluida. Envio a todo el Peru.`;
 
   return {

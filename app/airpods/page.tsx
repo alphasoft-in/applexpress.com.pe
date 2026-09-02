@@ -8,12 +8,12 @@ import { supabase } from "@/lib/supabase";
 export const revalidate = 60; // 1 minute cache
 
 export const metadata: Metadata = {
-  title: "AirPods Pro y Max en Peru | Importado de EE.UU.",
+  title: "AirPods Pro y Max en Perú | Importado de EE.UU.",
   description: "Compra AirPods Pro 2, AirPods Max importados de USA. Stock en Lima. Garantia incluida.",
   keywords: ["AirPods Pro Peru", "AirPods Max Peru", "Comprar AirPods Lima", "AirPods importados Peru"],
   alternates: { canonical: "https://applexpress-com-pe.vercel.app/airpods" },
   openGraph: {
-    title: "AirPods Pro y Max en Peru | Importado de EE.UU. | Apple Express",
+    title: "AirPods Pro y Max en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra AirPods Pro 2, AirPods Max importados de USA. Stock en Lima. Garantia incluida.",
     url: "https://applexpress-com-pe.vercel.app/airpods",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],

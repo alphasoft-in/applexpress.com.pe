@@ -8,12 +8,12 @@ import { supabase } from "@/lib/supabase";
 export const revalidate = 60; // 1 minute cache
 
 export const metadata: Metadata = {
-  title: "Accesorios Originales Apple en Peru",
+  title: "Accesorios Originales Apple en Perú",
   description: "Compra Apple Pencil, Magic Keyboard, MagSafe originales e importados de USA. Stock en Lima.",
   keywords: ["Accesorios Apple Peru", "Apple Pencil Peru", "Magic Keyboard Peru", "Cargador Apple Lima"],
   alternates: { canonical: "https://applexpress-com-pe.vercel.app/accesorios" },
   openGraph: {
-    title: "Accesorios Originales Apple en Peru | Apple Express",
+    title: "Accesorios Originales Apple en Perú | Apple Express",
     description: "Compra Apple Pencil, Magic Keyboard, MagSafe originales e importados de USA. Stock en Lima.",
     url: "https://applexpress-com-pe.vercel.app/accesorios",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
