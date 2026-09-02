@@ -30,11 +30,17 @@ export default function NuevoProductoPage() {
     extra: ""
   });
 
+  const [slugEdited, setSlugEdited] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     
-    // Auto-generate slug from model
-    if (e.target.name === "model") {
+    if (e.target.name === "slug") {
+      setSlugEdited(true);
+    }
+    
+    // Auto-generate slug from model only if user hasn't manually edited the slug
+    if (e.target.name === "model" && !slugEdited) {
       setFormData(prev => ({
         ...prev,
         slug: e.target.value.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
