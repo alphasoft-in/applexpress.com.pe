@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Truck, MapPin, ShoppingBag } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const WA_ICON = (
   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -37,6 +38,28 @@ interface Props {
 
 export function PurchaseOptions({ productName, productSpecs }: Props) {
   const [selected, setSelected] = useState<string>("envio");
+  const [waNumbers, setWaNumbers] = useState({ wa1: "51934288165", wa2: "51982848503" });
+
+  useEffect(() => {
+    async function fetchNumbers() {
+      try {
+        const { data } = await supabase
+          .from("settings")
+          .select("whatsapp_number, whatsapp_number_2")
+          .eq("id", 1)
+          .single();
+        if (data) {
+          setWaNumbers({
+            wa1: data.whatsapp_number ? data.whatsapp_number.replace(/\D/g, '') : "51934288165",
+            wa2: data.whatsapp_number_2 ? data.whatsapp_number_2.replace(/\D/g, '') : "51982848503",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching WA numbers:", error);
+      }
+    }
+    fetchNumbers();
+  }, []);
 
   const deliveryLabel = DELIVERY.find((d) => d.id === selected)?.label ?? "";
   const specsText = productSpecs ? ` (${productSpecs})` : "";
@@ -107,7 +130,7 @@ export function PurchaseOptions({ productName, productSpecs }: Props) {
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row gap-2 mt-1">
         <a
-          href={`https://wa.me/51934288165?text=${waText}`}
+          href={`https://wa.me/${waNumbers.wa1}?text=${waText}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"
@@ -116,7 +139,7 @@ export function PurchaseOptions({ productName, productSpecs }: Props) {
           Consultar (Asesor 1)
         </a>
         <a
-          href={`https://wa.me/51982848503?text=${waText}`}
+          href={`https://wa.me/${waNumbers.wa2}?text=${waText}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-[#f5f5f7] dark:text-black text-white py-3 px-6 rounded-full font-semibold text-[14px] transition-colors duration-200"

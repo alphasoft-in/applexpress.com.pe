@@ -12,6 +12,7 @@ export default function ConfiguracionPage() {
   const [formData, setFormData] = useState({
     banner_text: "",
     whatsapp_number: "",
+    whatsapp_number_2: "",
     contact_email: "",
     facebook_link: "",
     instagram_link: "",
@@ -36,6 +37,7 @@ export default function ConfiguracionPage() {
           setFormData({
             banner_text: data.banner_text || "",
             whatsapp_number: data.whatsapp_number || "",
+            whatsapp_number_2: data.whatsapp_number_2 || "",
             contact_email: data.contact_email || "",
             facebook_link: data.facebook_link || "",
             instagram_link: data.instagram_link || "",
@@ -123,7 +125,7 @@ export default function ConfiguracionPage() {
             <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Contacto</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Número de WhatsApp (con código de país)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp (Asesor 1)</label>
                 <input 
                   type="text" 
                   name="whatsapp_number" 
@@ -134,6 +136,17 @@ export default function ConfiguracionPage() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp (Asesor 2)</label>
+                <input 
+                  type="text" 
+                  name="whatsapp_number_2" 
+                  value={formData.whatsapp_number_2} 
+                  onChange={handleChange} 
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0071e3]" 
+                  placeholder="Ej. 51999888666" 
+                />
+              </div>
+              <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
                 <input 
                   type="email" 

@@ -24,6 +24,7 @@ export function Footer() {
   const pathname = usePathname();
   const [settings, setSettings] = useState({
     whatsapp_number: "51999999999",
+    whatsapp_number_2: "51999999999",
     facebook_link: "https://facebook.com",
     instagram_link: "https://instagram.com",
     tiktok_link: "https://tiktok.com",
@@ -99,6 +100,13 @@ export function Footer() {
                   WhatsApp: +{settings.whatsapp_number}
                 </a>
               </li>
+              {settings.whatsapp_number_2 && (
+                <li>
+                  <a href={`https://wa.me/${settings.whatsapp_number_2.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">
+                    WhatsApp: +{settings.whatsapp_number_2}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 
