@@ -55,10 +55,10 @@ export default function AdminLoginPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-900 to-black text-white shadow-lg mb-6 shadow-black/10 ring-1 ring-black/5">
               <FaApple className="w-8 h-8 -mt-1" />
             </div>
-            <h2 className="text-3xl font-semibold text-gray-900 tracking-tight">
+            <h2 className="text-2xl font-semibold text-gray-900 tracking-tight">
               Apple Express
             </h2>
-            <p className="mt-2 text-sm text-gray-500 font-medium">
+            <p className="mt-1.5 text-xs text-gray-500 font-medium">
               Panel de Administración
             </p>
           </div>
