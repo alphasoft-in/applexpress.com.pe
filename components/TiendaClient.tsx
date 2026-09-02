@@ -10,7 +10,7 @@ const INFO = [
   {
     Icon: MapPin,
     title: "Dirección",
-    lines: ["Calle Oslo 198, Oficina 201", "Los Portales - Ate, Lima", "Ref: Altura de Av. Separadora Industrial"],
+    lines: ["Jirón Juan José Crespo 198", "Ate, Lima", "Ref: Frente a Real Plaza Puruchuco"],
   },
   {
     Icon: Phone,
@@ -117,7 +117,7 @@ export function TiendaClient() {
             {/* Clean Vector Map Embed */}
             <div className="h-64 sm:h-72 lg:h-80 w-full relative bg-[#f5f5f7] dark:bg-[#1a1a1a] overflow-hidden border-b border-[#e8e8ed] dark:border-[#2a2a2a]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.6918563391438!2d-76.93287282493888!3d-12.044654788191982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c6c06a38221b%3A0x6b8408f6153724c9!2sCalle%20Oslo%20198%2C%20Ate%2015012!5e0!3m2!1ses!2spe!4v1787851382209!5m2!1ses!2spe"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3246.5730686523343!2d-76.93290002493892!3d-12.044584988192053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAyJzQwLjUiUyA3NsKwNTUnNDkuMiJX!5e1!3m2!1ses!2spe!4v1788310959885!5m2!1ses!2spe"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -136,18 +136,17 @@ export function TiendaClient() {
             <div className="px-7 sm:px-10 py-6 sm:py-8 space-y-4">
               <div>
                 <p className="text-[10px] font-semibold text-[#6e6e73] uppercase tracking-[0.16em] mb-1">Ubicación</p>
-                <p className="text-[15px] text-[#1d1d1f] dark:text-white font-semibold">Calle Oslo 198, Oficina 201</p>
-                <p className="text-xs text-[#6e6e73]">Urb. Los Portales — Ate, Lima, Perú</p>
+                <p className="text-[15px] text-[#1d1d1f] dark:text-white font-semibold">Jirón Juan José Crespo 198</p>
+                <p className="text-xs text-[#6e6e73]">Ate, Lima, Perú</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-[#f5f5f7] dark:bg-[#1a1a1a] border border-[#e8e8ed] dark:border-[#2a2a2a]">
-                <p className="text-[11px] font-semibold text-[#1d1d1f] dark:text-white mb-1 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3] shrink-0" />
-                  Referencia de llegada:
-                </p>
-                <p className="text-xs text-[#6e6e73] dark:text-[#86868b] leading-relaxed">
-                  A la altura de la Av. Separadora Industrial, cerca a Mayorazgo y a pocos minutos del Óvalo Huarochirí / Real Plaza Puruchuco.
-                </p>
+                <div className="space-y-1">
+                  <p className="text-[13px] font-medium text-[#1d1d1f] dark:text-white leading-tight">Referencia de llegada:</p>
+                  <p className="text-[13px] text-[#6e6e73] leading-relaxed">
+                    Frente a Real Plaza Puruchuco.
+                  </p>
+                </div>
               </div>
 
               <a

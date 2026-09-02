@@ -84,7 +84,7 @@ export function Footer() {
           <div>
             <h4 className="text-[0.65rem] font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">Ubicación</h4>
             <p className="text-xs leading-relaxed">
-              Calle Oslo 198<br />Oficina 201, Ate<br />Lima, Perú
+              Jirón Juan José Crespo 198<br />Ate<br />Lima, Perú
             </p>
             <div className="flex items-center gap-4 mt-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
