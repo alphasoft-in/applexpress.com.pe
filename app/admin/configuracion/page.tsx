@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import { Save, Megaphone, Phone, Mail, Facebook, Instagram, Video, CheckCircle2 } from "lucide-react";
+import { Save, Megaphone, Phone, Mail, Video, CheckCircle2 } from "lucide-react";
+import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 export default function ConfiguracionPage() {
@@ -225,7 +226,7 @@ export default function ConfiguracionPage() {
           <div className="p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center shrink-0">
-                <Instagram className="w-5 h-5 text-pink-600" />
+                <FaInstagram className="w-5 h-5 text-pink-600" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">Redes Sociales</h2>
@@ -238,7 +239,7 @@ export default function ConfiguracionPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Enlace de Facebook</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Facebook className="w-4 h-4 text-gray-400" />
+                    <FaFacebook className="w-4 h-4 text-gray-400" />
                   </div>
                   <input 
                     type="url" 
@@ -255,7 +256,7 @@ export default function ConfiguracionPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Enlace de Instagram</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Instagram className="w-4 h-4 text-gray-400" />
+                    <FaInstagram className="w-4 h-4 text-gray-400" />
                   </div>
                   <input 
                     type="url" 
@@ -272,7 +273,7 @@ export default function ConfiguracionPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Enlace de TikTok</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Video className="w-4 h-4 text-gray-400" />
+                    <FaTiktok className="w-4 h-4 text-gray-400" />
                   </div>
                   <input 
                     type="url" 
