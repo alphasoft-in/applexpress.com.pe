@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { ProductActions } from "@/components/admin/ProductActions";
 
 export const revalidate = 0; // Disable cache for this page
 
@@ -67,12 +68,7 @@ export default async function AdminProductsPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right space-x-3">
-                      <Link href={`/admin/productos/${product.id}`} className="text-[#0071e3] hover:text-[#0077ed] transition-colors" title="Editar">
-                        <Pencil className="w-4 h-4 inline" />
-                      </Link>
-                      <button className="text-red-500 hover:text-red-700 transition-colors" title="Eliminar">
-                        <Trash2 className="w-4 h-4 inline" />
-                      </button>
+                      <ProductActions productId={product.id} />
                     </td>
                   </tr>
                 ))
