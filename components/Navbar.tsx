@@ -70,7 +70,7 @@ export function Navbar() {
         <div className="max-w-[980px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-12">
             <Link href="/" className="hover:opacity-70 transition-opacity duration-200 shrink-0">
-              <span className="text-lg font-bold tracking-tight text-[#1d1d1f] dark:text-white">Apple Express</span>
+              <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#1d1d1f] dark:text-white">Apple Express</span>
             </Link>
 
             {/* Desktop links */}
