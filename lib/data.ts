@@ -8,7 +8,6 @@ export const MACBOOKS = [
     price: "S/ 2,299",
     stock: 8,
     screen: "Pantalla Retina de 13.3\"",
-    battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
     image: "/mac/macbook13-m12020.png"
   },
@@ -21,7 +20,6 @@ export const MACBOOKS = [
     price: "S/ 2,499",
     stock: 7,
     screen: "Pantalla Retina de 13.3\"",
-    battery: "Hasta 20 horas de batería",
     ports: "2 puertos Thunderbolt / USB 4",
     image: "/mac/macbook13-m12020-512.png"
   },
@@ -127,7 +125,6 @@ export const MACBOOKS = [
     price: "S/ 1,799",
     stock: 3,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro16-corei7-512.png"
   },
@@ -141,7 +138,6 @@ export const MACBOOKS = [
     price: "S/ 2,299",
     stock: 2,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro16-corei7-1tb.png"
   },
@@ -155,7 +151,6 @@ export const MACBOOKS = [
     price: "S/ 2,499",
     stock: 3,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro32-corei9-1tb.png"
   },
@@ -169,7 +164,6 @@ export const MACBOOKS = [
     price: "S/ 2,599",
     stock: 1,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro32-corei9-2tb.png"
   },
@@ -183,7 +177,6 @@ export const MACBOOKS = [
     price: "S/ 2,599",
     stock: 7,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro64-corei9-512.png"
   },
@@ -197,7 +190,6 @@ export const MACBOOKS = [
     price: "S/ 2,799",
     stock: 2,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro64-corei9-1.png"
   },
@@ -211,7 +203,6 @@ export const MACBOOKS = [
     price: "S/ 2,899",
     stock: 1,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro64-corei9-1-8.png"
   },
@@ -225,7 +216,6 @@ export const MACBOOKS = [
     price: "S/ 3,199",
     stock: 8,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro64-corei9-2-8.png"
   },
@@ -239,7 +229,6 @@ export const MACBOOKS = [
     price: "S/ 3,499",
     stock: 7,
     screen: "Pantalla Retina de 16\"",
-    battery: "Hasta 11 horas de batería",
     ports: "4 puertos Thunderbolt 3 (USB-C)",
     image: "/core/macbookpro64-corei9-2-8.png"
   }

@@ -1,23 +1,26 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa6";
 
 const CATEGORIES = [
   { name: "Mac", href: "/mac" },
   { name: "iPhone", href: "/iphone" },
-  { name: "iPad", href: "/ipad" },
-  { name: "Apple Watch", href: "/watch" },
   { name: "AirPods", href: "/airpods" },
   { name: "Accesorios", href: "/Accesorios" },
 ];
 
 const INFO_LINKS = [
-  { name: "Quiénes Somos", href: "#" },
-  { name: "Garantía", href: "#" },
-  { name: "Políticas de Envío", href: "#" },
-  { name: "Términos", href: "#" },
+  { name: "Quiénes Somos", href: "/quienes-somos" },
+  { name: "Garantía", href: "/garantia" },
+  { name: "Políticas de Envío", href: "/politicas-de-envio" },
+  { name: "Términos", href: "/terminos" },
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="bg-[#111111] text-[#6e6e73] border-t border-[#3a3a3c]">
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-10 sm:py-12">
@@ -27,26 +30,38 @@ export function Footer() {
           <div>
             <h4 className="text-[0.65rem] font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">Productos</h4>
             <ul className="space-y-2.5">
-              {CATEGORIES.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-xs hover:text-white transition-colors duration-200">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+              {CATEGORIES.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                return (
+                  <li key={item.name}>
+                    <Link 
+                      href={item.href} 
+                      className={`text-xs transition-colors duration-200 ${isActive ? "text-white font-semibold" : "hover:text-white"}`}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           <div>
             <h4 className="text-[0.65rem] font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">Información</h4>
             <ul className="space-y-2.5">
-              {INFO_LINKS.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-xs hover:text-white transition-colors duration-200">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+              {INFO_LINKS.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <li key={item.name}>
+                    <Link 
+                      href={item.href} 
+                      className={`text-xs transition-colors duration-200 ${isActive ? "text-white font-semibold" : "hover:text-white"}`}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
