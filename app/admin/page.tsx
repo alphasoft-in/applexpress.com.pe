@@ -5,55 +5,74 @@ import Link from "next/link";
 export const metadata = {
   title: "Dashboard | Apple Express Admin",
 };
-export const revalidate = 0; // Don't cache admin pages
+export const revalidate = 0;
 
 export default async function AdminDashboardPage() {
-  // Fetch products count and unique categories
+  // 1. Fetch products and categories
   const { data: products, error: productsError } = await supabase
     .from("products")
-    .select("category");
+    .select("category, slug, model");
     
   let totalProducts = 0;
   let activeCategories = 0;
+  const productMap: Record<string, string> = {}; // slug -> model
 
   if (!productsError && products) {
     totalProducts = products.length;
     const uniqueCategories = new Set(products.map(p => p.category));
     activeCategories = uniqueCategories.size;
+    products.forEach(p => {
+      productMap[p.slug] = p.model;
+    });
   }
 
-  // Fetch page views count (All time)
-  const { count: totalViews, error: viewsError } = await supabase
+  // 2. Fetch page views count (All time)
+  const { count: totalViews } = await supabase
     .from("page_views")
     .select("*", { count: "exact", head: true });
 
-  // Fetch WA clicks count (All time)
-  const { count: totalClicks, error: clicksError } = await supabase
+  // 3. Fetch WA clicks for each asesor
+  const { count: clicks1 } = await supabase
     .from("whatsapp_clicks")
-    .select("*", { count: "exact", head: true });
+    .select("*", { count: "exact", head: true })
+    .eq("asesor", "Asesor 1");
 
-  // Fetch top 5 pages
-  // Note: For complex aggregation, RPC (Stored Procedures) is best in Supabase, 
-  // but we can fetch recent views and group them in JS for this simple MVP.
-  // We'll fetch the last 1000 views to find the top pages.
-  const { data: recentViews, error: recentViewsError } = await supabase
+  const { count: clicks2 } = await supabase
+    .from("whatsapp_clicks")
+    .select("*", { count: "exact", head: true })
+    .eq("asesor", "Asesor 2");
+
+  // 4. Fetch top 5 products (from recent views)
+  const { data: recentViews } = await supabase
     .from("page_views")
     .select("path")
     .order("created_at", { ascending: false })
     .limit(1000);
 
-  const pathCounts: Record<string, number> = {};
+  const slugCounts: Record<string, number> = {};
   if (recentViews) {
     recentViews.forEach(view => {
-      // Exclude generic paths like /, /tienda, /mac to focus on products?
-      // For now, let's include everything
-      pathCounts[view.path] = (pathCounts[view.path] || 0) + 1;
+      // Paths usually look like /iphone/iphone-15-pro
+      const segments = view.path.split("/").filter(Boolean);
+      // We assume product pages have at least 2 segments (category/slug)
+      if (segments.length >= 2) {
+        const slug = segments[segments.length - 1];
+        // Only count if it matches a known product slug
+        if (productMap[slug]) {
+          slugCounts[slug] = (slugCounts[slug] || 0) + 1;
+        }
+      }
     });
   }
 
-  const topPaths = Object.entries(pathCounts)
+  const topProducts = Object.entries(slugCounts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
+    .slice(0, 5)
+    .map(([slug, count]) => ({
+      slug,
+      name: productMap[slug],
+      count,
+    }));
 
   return (
     <div className="space-y-8">
@@ -85,8 +104,13 @@ export default async function AdminDashboardPage() {
               <MousePointerClick className="w-5 h-5 text-green-600" />
             </div>
           </div>
-          <p className="text-3xl font-bold text-gray-900">{totalClicks || 0}</p>
-          <p className="text-xs text-gray-500 mt-2">Intenciones de compra directas</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-3xl font-bold text-gray-900">{(clicks1 || 0) + (clicks2 || 0)}</p>
+          </div>
+          <div className="flex items-center gap-3 mt-2 text-xs font-medium">
+            <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Asesor 1: {clicks1 || 0}</span>
+            <span className="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Asesor 2: {clicks2 || 0}</span>
+          </div>
         </div>
 
         {/* Productos */}
@@ -118,27 +142,27 @@ export default async function AdminDashboardPage() {
         {/* Top Páginas */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="px-6 py-5 border-b border-gray-200">
-            <h3 className="text-base font-semibold text-gray-900">Páginas más visitadas</h3>
-            <p className="text-sm text-gray-500 mt-1">Las 5 rutas con mayor tráfico reciente.</p>
+            <h3 className="text-base font-semibold text-gray-900">Productos más visitados</h3>
+            <p className="text-sm text-gray-500 mt-1">Los 5 productos con mayor interés reciente.</p>
           </div>
           <div className="divide-y divide-gray-200">
-            {topPaths.length > 0 ? (
-              topPaths.map(([path, count], index) => (
-                <div key={path} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {topProducts.length > 0 ? (
+              topProducts.map((prod, index) => (
+                <div key={prod.slug} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="text-sm font-semibold text-gray-400 w-4">{index + 1}</span>
-                    <Link href={path} target="_blank" className="text-sm font-medium text-blue-600 hover:underline flex items-center gap-1">
-                      {path} <ArrowUpRight className="w-3 h-3" />
-                    </Link>
+                    <span className="text-sm font-medium text-gray-900">
+                      {prod.name}
+                    </span>
                   </div>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                    {count} vistas
+                    {prod.count} vistas
                   </span>
                 </div>
               ))
             ) : (
               <div className="px-6 py-8 text-center text-sm text-gray-500">
-                Aún no hay suficientes datos de visitas registradas.
+                Aún no hay suficientes datos de visitas a productos.
               </div>
             )}
           </div>
@@ -150,15 +174,15 @@ export default async function AdminDashboardPage() {
           <ul className="space-y-4 text-blue-100 text-sm">
             <li className="flex gap-3">
               <span className="bg-white/20 rounded-full w-6 h-6 flex items-center justify-center shrink-0">1</span>
-              <p><strong className="text-white">Optimiza tu catálogo:</strong> Mira qué productos son los más visitados para asegurar que siempre haya stock disponible.</p>
+              <p><strong className="text-white">Rendimiento por Asesor:</strong> Ahora puedes ver exactamente cuántas personas hicieron clic en el botón del Asesor 1 vs el Asesor 2.</p>
             </li>
             <li className="flex gap-3">
               <span className="bg-white/20 rounded-full w-6 h-6 flex items-center justify-center shrink-0">2</span>
-              <p><strong className="text-white">Mide el interés real:</strong> Las vistas de página son buenas, pero los clics en WhatsApp te dicen cuántas personas realmente están listas para comprarte.</p>
+              <p><strong className="text-white">Interés Real:</strong> La lista de la izquierda ya no muestra páginas sueltas, sino que identifica el nombre exacto de tus productos más populares.</p>
             </li>
             <li className="flex gap-3">
               <span className="bg-white/20 rounded-full w-6 h-6 flex items-center justify-center shrink-0">3</span>
-              <p><strong className="text-white">Decisiones de Marketing:</strong> Si una categoría tiene muchas visitas pero pocos clics, podría ser momento de ofrecer un descuento.</p>
+              <p><strong className="text-white">Decisiones de Marketing:</strong> Si un producto tiene muchas visitas pero pocos clics, podría ser momento de ofrecer un descuento.</p>
             </li>
           </ul>
         </div>
