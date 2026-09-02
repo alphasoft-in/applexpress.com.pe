@@ -150,7 +150,7 @@ export function TiendaClient() {
               </div>
 
               <a
-                href="https://maps.google.com/?q=-12.0445849,-76.9329000"
+                href="https://maps.app.goo.gl/Gss8TYds7NLYHb2m8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-[#0071e3] hover:text-[#0077ed] text-sm font-semibold hover:underline underline-offset-2 transition-colors duration-200 pt-1"
