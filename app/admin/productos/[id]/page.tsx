@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { ArrowLeft, Save, UploadCloud } from "lucide-react";
+import { ArrowLeft, Save, CloudUpload } from "lucide-react";
 import Link from "next/link";
 import { use } from "react";
 
@@ -198,7 +198,7 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
             <div className="flex items-center justify-center w-full">
               <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <UploadCloud className="w-8 h-8 mb-3 text-gray-400" />
+                  <CloudUpload className="w-8 h-8 mb-3 text-gray-400" />
                   <p className="mb-2 text-sm text-gray-500">
                     <span className="font-semibold">Haz clic para subir una nueva imagen</span> o arrastra aquí
                   </p>
