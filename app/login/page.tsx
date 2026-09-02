@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
       router.push("/admin");
       router.refresh();
     } catch (err: any) {
-      setError("Credenciales incorrectas o usuario no autorizado.");
+      setError("Error: " + (err.message || "Credenciales incorrectas o usuario no autorizado."));
     } finally {
       setLoading(false);
     }
