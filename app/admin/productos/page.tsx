@@ -1,19 +1,33 @@
 import Link from "next/link";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { ProductActions } from "@/components/admin/ProductActions";
 
 export const revalidate = 0; // Disable cache for this page
 
-export default async function AdminProductsPage() {
-  const { data: products, error } = await supabase
+const PAGE_SIZE = 10;
+
+export default async function AdminProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const from = (currentPage - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+
+  const { data: products, error, count } = await supabase
     .from("products")
-    .select("*")
-    .order("created_at", { ascending: false });
+    .select("*", { count: "exact" })
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
   if (error) {
     console.error("Error fetching products:", error);
   }
+
+  const totalPages = count ? Math.ceil(count / PAGE_SIZE) : 1;
 
   return (
     <div className="space-y-6">
@@ -33,7 +47,7 @@ export default async function AdminProductsPage() {
         </Link>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -82,6 +96,34 @@ export default async function AdminProductsPage() {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            <span className="text-sm text-gray-500">
+              Mostrando página <span className="font-semibold text-gray-900">{currentPage}</span> de <span className="font-semibold text-gray-900">{totalPages}</span> (Total: {count} productos)
+            </span>
+            
+            <div className="flex items-center gap-2">
+              <Link
+                href={currentPage > 1 ? `/admin/productos?page=${currentPage - 1}` : "#"}
+                className={`p-2 rounded-lg border border-gray-300 flex items-center justify-center transition-colors ${
+                  currentPage > 1 ? "bg-white hover:bg-gray-100 text-gray-700" : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Link>
+              <Link
+                href={currentPage < totalPages ? `/admin/productos?page=${currentPage + 1}` : "#"}
+                className={`p-2 rounded-lg border border-gray-300 flex items-center justify-center transition-colors ${
+                  currentPage < totalPages ? "bg-white hover:bg-gray-100 text-gray-700" : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
