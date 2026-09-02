@@ -29,11 +29,11 @@ export async function generateMetadata(
     title,
     description,
     keywords: [`${mac.model} Peru`, `${mac.model} Lima`, `MacBook ${mac.chip} Peru`, "MacBook importado Peru"],
-    alternates: { canonical: `https://applexpress.com.pe/mac/${slug}` },
+    alternates: { canonical: `https://applexpress-com-pe.vercel.app/mac/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Peru`,
       description,
-      url: `https://applexpress.com.pe/mac/${slug}`,
+      url: `https://applexpress-com-pe.vercel.app/mac/${slug}`,
       images: mac.image.startsWith("http")
         ? [{ url: mac.image, width: 800, height: 600, alt: mac.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -81,7 +81,7 @@ export default async function MacBookDetailPage({ params }: { params: Promise<{ 
       seller: {
         "@type": "Organization",
         name: "Apple Express Peru",
-        url: "https://applexpress.com.pe",
+        url: "https://applexpress-com-pe.vercel.app",
       },
     },
   };

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "iPad en Peru | Importado de EE.UU.",
   description: "iPad, iPad Air y iPad Pro con chip M1 y M2 importados desde Estados Unidos. Con garantia y envio a todo el Peru.",
   keywords: ["iPad Peru", "iPad Pro Peru", "iPad Air Peru", "iPad Lima", "comprar iPad Peru"],
-  alternates: { canonical: "https://applexpress.com.pe/ipad" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/ipad" },
   openGraph: {
     title: "iPad en Peru | Apple Express",
     description: "iPad, iPad Air y iPad Pro M1/M2 importados de EE.UU. Envio a todo el Peru.",
-    url: "https://applexpress.com.pe/ipad",
+    url: "https://applexpress-com-pe.vercel.app/ipad",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

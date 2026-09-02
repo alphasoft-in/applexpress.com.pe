@@ -28,11 +28,11 @@ export async function generateMetadata(
     title,
     description,
     keywords: [`${item.model} Peru`, "accesorios Apple Peru", "Apple Pencil Peru", "MagSafe Peru"],
-    alternates: { canonical: `https://applexpress.com.pe/accesorios/${slug}` },
+    alternates: { canonical: `https://applexpress-com-pe.vercel.app/accesorios/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Perú`,
       description,
-      url: `https://applexpress.com.pe/accesorios/${slug}`,
+      url: `https://applexpress-com-pe.vercel.app/accesorios/${slug}`,
       images: item.image.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -68,7 +68,7 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
       seller: {
         "@type": "Organization",
         name: "Apple Express Perú",
-        url: "https://applexpress.com.pe",
+        url: "https://applexpress-com-pe.vercel.app",
       },
     },
   };

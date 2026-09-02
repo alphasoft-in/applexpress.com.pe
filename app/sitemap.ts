@@ -1,7 +1,7 @@
 ﻿import { MetadataRoute } from "next";
 import { MACBOOKS, IPHONES, IPADS, WATCHES, AIRPODS, ACCESSORIES } from "@/lib/data";
 
-const BASE = "https://applexpress.com.pe";
+const BASE = "https://applexpress-com-pe.vercel.app";
 const NOW = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {

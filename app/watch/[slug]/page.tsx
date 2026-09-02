@@ -28,11 +28,11 @@ export async function generateMetadata(
     title,
     description,
     keywords: [`${item.model} Peru`, `${item.model} Lima`, "Apple Watch Peru", "comprar Apple Watch Peru"],
-    alternates: { canonical: `https://applexpress.com.pe/watch/${slug}` },
+    alternates: { canonical: `https://applexpress-com-pe.vercel.app/watch/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Perú`,
       description,
-      url: `https://applexpress.com.pe/watch/${slug}`,
+      url: `https://applexpress-com-pe.vercel.app/watch/${slug}`,
       images: item.image.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -69,7 +69,7 @@ export default async function WatchDetailPage({ params }: { params: Promise<{ sl
       seller: {
         "@type": "Organization",
         name: "Apple Express Perú",
-        url: "https://applexpress.com.pe",
+        url: "https://applexpress-com-pe.vercel.app",
       },
     },
   };

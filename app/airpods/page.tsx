@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "AirPods en Peru | Importados de EE.UU.",
   description: "AirPods 2da gen, AirPods 3ra gen, AirPods Pro y AirPods Max importados desde Estados Unidos. Con garantia. Envio a todo el Peru.",
   keywords: ["AirPods Peru", "AirPods Pro Peru", "AirPods Max Peru", "audifonos Apple Peru"],
-  alternates: { canonical: "https://applexpress.com.pe/airpods" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/airpods" },
   openGraph: {
     title: "AirPods en Peru | Apple Express",
     description: "AirPods, AirPods Pro y AirPods Max importados de EE.UU. Con garantia. Envio a todo el Peru.",
-    url: "https://applexpress.com.pe/airpods",
+    url: "https://applexpress-com-pe.vercel.app/airpods",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

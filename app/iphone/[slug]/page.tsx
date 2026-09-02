@@ -28,11 +28,11 @@ export async function generateMetadata(
     title,
     description,
     keywords: [`${item.model} Peru`, `${item.model} Lima`, `iPhone ${item.storage} Peru`, "iPhone importado Peru", "comprar iPhone"],
-    alternates: { canonical: `https://applexpress.com.pe/iphone/${slug}` },
+    alternates: { canonical: `https://applexpress-com-pe.vercel.app/iphone/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Perú`,
       description,
-      url: `https://applexpress.com.pe/iphone/${slug}`,
+      url: `https://applexpress-com-pe.vercel.app/iphone/${slug}`,
       images: item.image.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -70,7 +70,7 @@ export default async function IPhoneDetailPage({ params }: { params: Promise<{ s
       seller: {
         "@type": "Organization",
         name: "Apple Express Perú",
-        url: "https://applexpress.com.pe",
+        url: "https://applexpress-com-pe.vercel.app",
       },
     },
   };

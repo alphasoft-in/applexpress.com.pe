@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://applexpress.com.pe/sitemap.xml",
-    host: "https://applexpress.com.pe",
+    sitemap: "https://applexpress-com-pe.vercel.app/sitemap.xml",
+    host: "https://applexpress-com-pe.vercel.app",
   };
 }

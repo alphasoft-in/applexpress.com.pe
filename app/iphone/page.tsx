@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "iPhone en Peru | Importado de EE.UU.",
   description: "iPhone 14, iPhone 15 y iPhone 15 Pro importados directamente desde Estados Unidos. Desbloqueados, con garantia. Envio a todo el Peru.",
   keywords: ["iPhone Peru", "iPhone 15 Peru", "iPhone 15 Pro Peru", "iPhone Lima", "comprar iPhone Peru"],
-  alternates: { canonical: "https://applexpress.com.pe/iphone" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/iphone" },
   openGraph: {
     title: "iPhone en Peru | Apple Express",
     description: "iPhone 14, 15 y 15 Pro importados de EE.UU. Desbloqueados, con garantia. Envio a todo el Peru.",
-    url: "https://applexpress.com.pe/iphone",
+    url: "https://applexpress-com-pe.vercel.app/iphone",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "Nuestra Tienda en Lima | Apple Express Perú",
   description: "Visita nuestra tienda física en Ate, Lima. Conoce los productos Apple importados en persona: MacBook, iPhone, iPad, Apple Watch. Asesoría personalizada.",
   keywords: ["tienda Apple Lima", "comprar Apple Ate", "tienda Apple Express", "Apple Store Lima Peru", "MacBook tienda Lima"],
-  alternates: { canonical: "https://applexpress.com.pe/tienda" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/tienda" },
   openGraph: {
     title: "Nuestra Tienda en Lima | Apple Express Perú",
     description: "Visita nuestra sede en Ate, Lima. Productos Apple importados con garantía y atención personalizada.",
-    url: "https://applexpress.com.pe/tienda",
+    url: "https://applexpress-com-pe.vercel.app/tienda",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
@@ -21,7 +21,7 @@ const tiendaJsonLd = {
   "@type": "Store",
   name: "Apple Express Perú - Sede Lima",
   description: "Tienda física y showroom de importación de productos Apple en Lima, Perú.",
-  url: "https://applexpress.com.pe/tienda",
+  url: "https://applexpress-com-pe.vercel.app/tienda",
   telephone: "+51934288165",
   address: {
     "@type": "PostalAddress",

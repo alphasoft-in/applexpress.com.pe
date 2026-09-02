@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "Accesorios Apple en Peru | Originales importados de EE.UU.",
   description: "Apple Pencil, Magic Keyboard, MagSafe y mas accesorios originales importados desde Estados Unidos. Con garantia. Envio a todo el Peru.",
   keywords: ["accesorios Apple Peru", "Apple Pencil Peru", "MagSafe Peru", "Magic Keyboard Peru"],
-  alternates: { canonical: "https://applexpress.com.pe/accesorios" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/accesorios" },
   openGraph: {
     title: "Accesorios Apple en Peru | Apple Express",
     description: "Apple Pencil, MagSafe, Magic Keyboard originales importados de EE.UU. Con garantia.",
-    url: "https://applexpress.com.pe/accesorios",
+    url: "https://applexpress-com-pe.vercel.app/accesorios",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

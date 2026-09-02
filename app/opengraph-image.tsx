@@ -98,7 +98,7 @@ export default async function Image() {
             color: "#52525b",
           }}
         >
-          <span>applexpress.com.pe</span>
+          <span>applexpress-com-pe.vercel.app</span>
           <span>•</span>
           <span>Lima, Perú</span>
           <span>•</span>

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   title: "MacBook Pro en Peru | Importado de EE.UU.",
   description: "Compra MacBook Pro M1, M2, M3 importado directamente desde Estados Unidos. Stock disponible en Lima. Garantia incluida. Envio a todo el Peru.",
   keywords: ["MacBook Pro Peru", "MacBook M1 Peru", "MacBook M2 Peru", "MacBook M3 Peru", "MacBook Lima"],
-  alternates: { canonical: "https://applexpress.com.pe/mac" },
+  alternates: { canonical: "https://applexpress-com-pe.vercel.app/mac" },
   openGraph: {
     title: "MacBook Pro en Peru | Apple Express",
     description: "Stock de MacBook Pro M1, M2 y M3 importado desde EE.UU. Garantia y envio a todo el Peru.",
-    url: "https://applexpress.com.pe/mac",
+    url: "https://applexpress-com-pe.vercel.app/mac",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

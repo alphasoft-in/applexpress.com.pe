@@ -28,11 +28,11 @@ export async function generateMetadata(
     title,
     description,
     keywords: [`${item.model} Peru`, "AirPods Peru", "audifonos Apple Peru", "comprar AirPods Lima"],
-    alternates: { canonical: `https://applexpress.com.pe/airpods/${slug}` },
+    alternates: { canonical: `https://applexpress-com-pe.vercel.app/airpods/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Perú`,
       description,
-      url: `https://applexpress.com.pe/airpods/${slug}`,
+      url: `https://applexpress-com-pe.vercel.app/airpods/${slug}`,
       images: item.image.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -68,7 +68,7 @@ export default async function AirPodsDetailPage({ params }: { params: Promise<{ 
       seller: {
         "@type": "Organization",
         name: "Apple Express Perú",
-        url: "https://applexpress.com.pe",
+        url: "https://applexpress-com-pe.vercel.app",
       },
     },
   };
