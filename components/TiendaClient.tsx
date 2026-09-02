@@ -117,7 +117,7 @@ export function TiendaClient() {
             {/* Clean Vector Map Embed */}
             <div className="h-64 sm:h-72 lg:h-80 w-full relative bg-[#f5f5f7] dark:bg-[#1a1a1a] overflow-hidden border-b border-[#e8e8ed] dark:border-[#2a2a2a]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3246.5730686523343!2d-76.93290002493892!3d-12.044584988192053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAyJzQwLjUiUyA3NsKwNTUnNDkuMiJX!5e1!3m2!1ses!2spe!4v1788310959885!5m2!1ses!2spe"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3246.5730686523343!2d-76.93290002493892!3d-12.044584988192053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDAyJzQwLjUiUyA3NsKwNTUnNDkuMiJX!5e0!3m2!1ses!2spe!4v1788310959885!5m2!1ses!2spe"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
