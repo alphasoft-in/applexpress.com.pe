@@ -12,18 +12,20 @@ export default async function AdminDashboardPage() {
   // 1. Fetch products and categories
   const { data: products, error: productsError } = await supabase
     .from("products")
-    .select("category, slug, model");
+    .select("category, slug, model, processor, storage");
     
   let totalProducts = 0;
   let activeCategories = 0;
-  const productMap: Record<string, string> = {}; // slug -> model
+  const productMap: Record<string, string> = {}; // slug -> specific name
 
   if (!productsError && products) {
     totalProducts = products.length;
     const uniqueCategories = new Set(products.map(p => p.category));
     activeCategories = uniqueCategories.size;
     products.forEach(p => {
-      productMap[p.slug] = p.model;
+      // Create a specific name like "MacBook Pro 16 (M3 - 1TB)" to avoid duplicates
+      const specs = [p.processor, p.storage].filter(Boolean).join(" - ");
+      productMap[p.slug] = specs ? `${p.model} (${specs})` : p.model;
     });
   }
 
