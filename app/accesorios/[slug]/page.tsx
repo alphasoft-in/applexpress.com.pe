@@ -1,4 +1,4 @@
-import { ACCESSORIES } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -9,31 +9,33 @@ import { PurchaseOptions } from "@/components/PurchaseOptions";
 import type { Metadata } from "next";
 import Image from "next/image";
 
-export function generateStaticParams() {
-  return ACCESSORIES.map((item) => ({ slug: item.slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const { data: products } = await supabase.from("products").select("slug").eq("category", "accesorios");
+  return products?.map((p) => ({ slug: p.slug })) || [];
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params;
-  const item = ACCESSORIES.find((i) => i.slug === slug);
+  const { data: item } = await supabase.from("products").select("*").eq("slug", slug).single();
   if (!item) return {};
 
-  const specs = [(item as any).type, (item as any).compatibility, (item as any).features].filter(Boolean).join(", ");
-  const title = `${item.model} en Perú | Apple Express`;
-  const description = `Compra ${item.model} original Apple con ${specs} importado desde EE.UU. Precio ${item.price}. Garantía incluida. Envío a todo el Perú.`;
+  const specs = [item.type, item.compatibility, item.connectivity].filter(Boolean).join(", ");
+  const title = `${item.model} ${specs} en Peru`.trim();
+  const description = `Compra ${item.model} con ${specs} importado desde EE.UU. ${item.price}. Garantia incluida. Envio a todo el Peru.`;
 
   return {
     title,
     description,
-    keywords: [`${item.model} Peru`, "accesorios Apple Peru", "Apple Pencil Peru", "MagSafe Peru"],
     alternates: { canonical: `https://applexpress-com-pe.vercel.app/accesorios/${slug}` },
     openGraph: {
-      title: `${title} | Apple Express Perú`,
+      title: `${title} | Apple Express Peru`,
       description,
       url: `https://applexpress-com-pe.vercel.app/accesorios/${slug}`,
-      images: item.image.startsWith("http")
+      images: item.image?.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -41,33 +43,38 @@ export async function generateMetadata(
 }
 
 const SPECS_MAP = [
-  { key: "type",          label: "Tipo" },
-  { key: "compatibility", label: "Compatibilidad" },
-  { key: "features",      label: "Funciones" },
-  { key: "connectivity",  label: "Conectividad" },
+  { key: "processor", label: "Procesador / Chip" },
+  { key: "memory", label: "Memoria / RAM" },
+  { key: "storage", label: "Almacenamiento" },
+  { key: "screen", label: "Pantalla" },
+  { key: "camera", label: "Cámara" },
+  { key: "battery", label: "Batería" },
+  { key: "connectivity", label: "Conectividad" },
+  { key: "features", label: "Características" },
 ];
 
-export default async function AccesoriosDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function DetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const item = ACCESSORIES.find((i) => i.slug === resolvedParams.slug);
+  const { data: item } = await supabase.from("products").select("*").eq("slug", resolvedParams.slug).single();
   if (!item) notFound();
 
   const priceRaw = item.price.replace(/[^\d]/g, "");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: item.model,
-    description: `${item.model} original Apple importado desde EE.UU.`,
+    description: `${item.model} importado desde EE.UU.`,
     image: item.image,
     brand: { "@type": "Brand", name: "Apple" },
     offers: {
       "@type": "Offer",
       priceCurrency: "PEN",
       price: priceRaw,
-      availability: "https://schema.org/InStock",
+      availability: item.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       seller: {
         "@type": "Organization",
-        name: "Apple Express Perú",
+        name: "Apple Express Peru",
         url: "https://applexpress-com-pe.vercel.app",
       },
     },
@@ -75,17 +82,14 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
 
   return (
     <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Navbar />
 
       <section className="pt-6 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-6 max-w-[980px] mx-auto">
         <FadeIn delay={0}>
           <Link
             href="/accesorios"
-            className="group inline-flex items-center gap-1.5 text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] dark:text-[#86868b] dark:hover:text-white transition-colors mb-8 sm:mb-10"
+            className="group inline-flex items-center gap-1.5 text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] dark:text-[#86868b] dark:hover:text-white transition-colors mb-8 sm:mb-10 capitalize"
           >
             <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5 duration-200" />
             Accesorios
@@ -95,21 +99,25 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
           <FadeIn delay={0.1} className="w-full md:sticky md:top-24">
             <div className="relative bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-2xl sm:rounded-3xl overflow-hidden flex items-center justify-center aspect-[4/3] sm:aspect-square group">
-              <Image
-                src={item.image}
-                alt={item.model}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-              />
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.model}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                />
+              ) : (
+                <div className="text-gray-400">Sin imagen</div>
+              )}
             </div>
           </FadeIn>
 
           <StaggerContainer className="flex flex-col">
-            {(item as any).extra && (
+            {item.extra && (
               <StaggerItem>
                 <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[10px] font-semibold uppercase tracking-wider mb-3">
-                  {(item as any).extra}
+                  {item.extra}
                 </span>
               </StaggerItem>
             )}
@@ -120,15 +128,14 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
               </h1>
             </StaggerItem>
 
-            {/* Price & Stock */}
             <StaggerItem>
               <div className="mb-6 sm:mb-8">
                 <p className="text-base sm:text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
                   Desde {item.price}
                 </p>
                 <div className="mt-2.5">
-                  <span className="inline-block px-2.5 py-1 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[11px] font-semibold uppercase tracking-wider">
-                    {(item as any).stock ? `Stock: ${(item as any).stock} unidades` : "Stock disponible"}
+                  <span className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${item.stock > 0 ? "bg-[#0071e3]/10 text-[#0071e3]" : "bg-red-100 text-red-600"}`}>
+                    {item.stock > 0 ? `Stock: ${item.stock} unidades` : "Agotado"}
                   </span>
                 </div>
               </div>
@@ -141,10 +148,10 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
                 </p>
                 <dl className="space-y-0 divide-y divide-[#f0f0f0] dark:divide-[#1e1e1e]">
                   {SPECS_MAP.map(({ key, label }) =>
-                    (item as any)[key] ? (
+                    item[key as keyof typeof item] ? (
                       <div key={key} className="flex items-start gap-3 py-2.5">
                         <dt className="text-[12px] text-[#86868b] dark:text-[#6e6e73] w-[100px] sm:w-[110px] shrink-0 pt-px leading-snug">{label}</dt>
-                        <dd className="text-[12px] sm:text-[13px] text-[#1d1d1f] dark:text-white leading-snug">{(item as any)[key]}</dd>
+                        <dd className="text-[12px] sm:text-[13px] text-[#1d1d1f] dark:text-white leading-snug">{item[key as keyof typeof item]}</dd>
                       </div>
                     ) : null
                   )}
@@ -153,12 +160,11 @@ export default async function AccesoriosDetailPage({ params }: { params: Promise
             </StaggerItem>
 
             <StaggerItem>
-              <PurchaseOptions productName={item.model} productSpecs={[(item as any).compatibility, (item as any).extra].filter(Boolean).join(" · ")} />
+              <PurchaseOptions productName={item.model} productSpecs={[item.type, item.compatibility, item.connectivity].filter(Boolean).join(" · ")} />
             </StaggerItem>
           </StaggerContainer>
         </div>
       </section>
-
       <Footer />
     </main>
   );

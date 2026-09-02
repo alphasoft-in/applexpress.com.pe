@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { MACBOOKS, IPHONES, IPADS, WATCHES, AIRPODS, ACCESSORIES } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
 
 interface Product {
   slug: string;
@@ -14,15 +14,6 @@ interface Product {
   category: string;
 }
 
-const ALL_PRODUCTS: Product[] = [
-  ...MACBOOKS.map(p => ({ ...p, category: 'mac' })),
-  ...IPHONES.map(p => ({ ...p, category: 'iphone' })),
-  ...IPADS.map(p => ({ ...p, category: 'ipad' })),
-  ...WATCHES.map(p => ({ ...p, category: 'watch' })),
-  ...AIRPODS.map(p => ({ ...p, category: 'airpods' })),
-  ...ACCESSORIES.map(p => ({ ...p, category: 'accesorios' })),
-];
-
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -30,12 +21,33 @@ interface SearchModalProps {
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState("");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Fetch products when modal opens (only once per session)
+  useEffect(() => {
+    async function fetchProducts() {
+      if (isOpen && products.length === 0) {
+        setLoading(true);
+        try {
+          const { data } = await supabase
+            .from("products")
+            .select("slug, model, price, image, category");
+          if (data) setProducts(data);
+        } catch (error) {
+          console.error("Error fetching products", error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    }
+    fetchProducts();
+  }, [isOpen, products.length]);
 
   // Focus input when modal opens
   useEffect(() => {
     if (isOpen) {
-      // Small timeout to allow render
       setTimeout(() => inputRef.current?.focus(), 50);
       document.body.style.overflow = "hidden";
     } else {
@@ -64,7 +76,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const filteredProducts = query.trim() === ""
     ? []
-    : ALL_PRODUCTS.filter(p =>
+    : products.filter(p =>
         p.model.toLowerCase().includes(query.toLowerCase()) ||
         p.slug.toLowerCase().includes(query.toLowerCase())
       );
@@ -97,7 +109,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
         {query.trim() !== "" && (
           <div className="overflow-y-auto flex-1 p-2">
-            {filteredProducts.length > 0 ? (
+            {loading ? (
+              <div className="p-8 text-center text-slate-500">Cargando productos...</div>
+            ) : filteredProducts.length > 0 ? (
               <div className="space-y-1">
                 {filteredProducts.map((product) => (
                   <Link
@@ -107,12 +121,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     className="flex items-center p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
                   >
                     <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 flex-shrink-0">
-                      <Image
-                        src={product.image}
-                        alt={product.model}
-                        fill
-                        className="object-cover"
-                      />
+                      {product.image && (
+                        <Image
+                          src={product.image}
+                          alt={product.model}
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                     </div>
                     <div className="ml-4 flex-1">
                       <h4 className="font-semibold text-slate-900 dark:text-white group-hover:text-brand dark:group-hover:text-brand-hover transition-colors">

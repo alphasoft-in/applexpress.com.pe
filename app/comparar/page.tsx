@@ -1,4 +1,4 @@
-import { MACBOOKS, IPHONES, IPADS, WATCHES, AIRPODS, ACCESSORIES } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
@@ -6,29 +6,18 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 
-const CATEGORY_MAP: Record<string, any[]> = {
-  mac: MACBOOKS,
-  iphone: IPHONES,
-  ipad: IPADS,
-  watch: WATCHES,
-  airpods: AIRPODS,
-  accesorios: ACCESSORIES,
-};
-
 const ALL_FEATURES = [
   { key: "price", label: "Precio" },
-  { key: "chip", label: "Chip" },
-  { key: "ram", label: "Memoria" },
+  { key: "processor", label: "Procesador / Chip" },
+  { key: "memory", label: "Memoria / RAM" },
   { key: "storage", label: "Almacenamiento" },
   { key: "screen", label: "Pantalla" },
   { key: "camera", label: "Cámara" },
   { key: "battery", label: "Batería" },
-  { key: "ports", label: "Puertos" },
-  { key: "waterResistance", label: "Resistencia" },
-  { key: "audio", label: "Audio" },
   { key: "connectivity", label: "Conectividad" },
   { key: "features", label: "Características" },
   { key: "compatibility", label: "Compatibilidad" },
+  { key: "type", label: "Tipo" },
   { key: "extra", label: "Acabado / Extra" },
 ];
 
@@ -41,11 +30,16 @@ export default async function CompararPage({
   const slugs = resolvedParams.slugs?.split(",") || [];
   const category = resolvedParams.category || "";
 
-  const categoryItems = CATEGORY_MAP[category] || [];
-  const items = categoryItems.filter((i) => slugs.includes(i.slug));
+  // Fetch only the requested slugs
+  const { data: items } = await supabase
+    .from("products")
+    .select("*")
+    .in("slug", slugs);
+
+  const validItems = items || [];
 
   const relevantFeatures = ALL_FEATURES.filter((f) =>
-    items.some((item) => item[f.key])
+    validItems.some((item) => item[f.key as keyof typeof item])
   );
 
   return (
@@ -70,7 +64,7 @@ export default async function CompararPage({
             </h1>
           </StaggerItem>
 
-          {items.length === 0 ? (
+          {validItems.length === 0 ? (
             <StaggerItem>
               <div className="text-center py-20 text-[#86868b]">
                 <p>No se encontraron productos para comparar.</p>
@@ -82,19 +76,21 @@ export default async function CompararPage({
                 <thead>
                   <tr>
                     <th className="w-48 p-4 text-left border-b border-[#e8e8ed] dark:border-[#2a2a2a] bg-[#fbfbfd]/50 dark:bg-black/50 sticky left-0 z-10 backdrop-blur-md"></th>
-                    {items.map((item) => (
+                    {validItems.map((item) => (
                       <th
                         key={item.slug}
                         className="p-4 text-center border-b border-[#e8e8ed] dark:border-[#2a2a2a] min-w-[200px]"
                       >
                         <div className="flex flex-col items-center gap-4">
-                          <div className="relative w-32 h-32 flex items-center justify-center">
-                            <Image
-                              src={item.image}
-                              alt={item.model}
-                              fill
-                              className="object-contain"
-                            />
+                          <div className="relative w-32 h-32 flex items-center justify-center bg-[#f5f5f7] dark:bg-[#1c1c1e] rounded-xl overflow-hidden">
+                            {item.image && (
+                              <Image
+                                src={item.image}
+                                alt={item.model}
+                                fill
+                                className="object-contain p-2"
+                              />
+                            )}
                           </div>
                           <div>
                             <h3 className="text-lg font-bold text-[#1d1d1f] dark:text-white">
@@ -112,25 +108,25 @@ export default async function CompararPage({
                       <td className="p-4 text-sm font-semibold text-[#86868b] dark:text-[#6e6e73] border-b border-[#e8e8ed] dark:border-[#2a2a2a] bg-[#fbfbfd] dark:bg-black group-hover:bg-[#f5f5f7]/50 dark:group-hover:bg-[#1c1c1e]/50 sticky left-0 z-10 transition-colors">
                         {feature.label}
                       </td>
-                      {items.map((item) => (
+                      {validItems.map((item) => (
                         <td
                           key={item.slug}
                           className="p-4 text-sm text-[#1d1d1f] dark:text-[#f5f5f7] text-center border-b border-[#e8e8ed] dark:border-[#2a2a2a]"
                         >
-                          {item[feature.key] || "-"}
+                          {item[feature.key as keyof typeof item] || "-"}
                         </td>
                       ))}
                     </tr>
                   ))}
                   <tr>
                     <td className="p-4 border-b border-[#e8e8ed] dark:border-[#2a2a2a] bg-[#fbfbfd] dark:bg-black sticky left-0 z-10"></td>
-                    {items.map((item) => (
+                    {validItems.map((item) => (
                       <td
                         key={`action-${item.slug}`}
                         className="p-4 text-center border-b border-[#e8e8ed] dark:border-[#2a2a2a]"
                       >
                         <Link
-                          href={`/${category}/${item.slug}`}
+                          href={`/${item.category}/${item.slug}`}
                           className="inline-block px-6 py-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[13px] font-semibold rounded-full transition-colors"
                         >
                           Ver detalle
