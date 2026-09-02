@@ -134,7 +134,7 @@ export default async function DetailPage({ params }: { params: Promise<{ slug: s
                   Desde {item.price}
                 </p>
                 <div className="mt-2.5">
-                  <span className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${item.stock > 0 ? "bg-[#0071e3]/10 text-[#0071e3]" : "bg-red-100 text-red-600"}`}>
+                  <span className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${item.stock > 0 ? "bg-[#0071e3]/10 text-[#0071e3]" : "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400"}`}>
                     {item.stock > 0 ? `Stock: ${item.stock} unidades` : "Agotado"}
                   </span>
                 </div>

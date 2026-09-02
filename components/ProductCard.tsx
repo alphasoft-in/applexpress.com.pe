@@ -95,7 +95,7 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, st
           </p>
           <div className="mt-2.5">
             {stock === 0 ? (
-              <span className="inline-block px-2.5 py-1 rounded-full bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400 text-[11px] font-semibold uppercase tracking-wider">
+              <span className="inline-block px-2.5 py-1 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400 text-[11px] font-semibold uppercase tracking-wider">
                 Agotado
               </span>
             ) : (
