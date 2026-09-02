@@ -1,7 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Package, LayoutDashboard, LogOut, Settings } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => {
+    if (path === "/admin") {
+      return pathname === "/admin";
+    }
+    return pathname?.startsWith(path);
+  };
+
+  const navItems = [
+    { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+    { name: "Productos", href: "/admin/productos", icon: Package },
+    { name: "Configuración", href: "/admin/configuracion", icon: Settings },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
@@ -11,18 +29,27 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
         
         <nav className="flex-1 py-6 px-4 space-y-1">
-          <Link href="/admin" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-            <LayoutDashboard className="w-5 h-5 text-gray-500" />
-            Dashboard
-          </Link>
-          <Link href="/admin/productos" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-            <Package className="w-5 h-5 text-gray-500" />
-            Productos
-          </Link>
-          <Link href="/admin/configuracion" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-            <Settings className="w-5 h-5 text-gray-500" />
-            Configuración
-          </Link>
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  active
+                    ? "bg-[#0071e3]/10 text-[#0071e3]"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <item.icon
+                  className={`w-5 h-5 ${
+                    active ? "text-[#0071e3]" : "text-gray-500"
+                  }`}
+                />
+                {item.name}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="p-4 border-t border-gray-200">
