@@ -79,6 +79,42 @@ export default async function AdminDashboardPage() {
     { name: "Asesor 2", clicks: clicks2 || 0 },
   ];
 
+  // 5. Fetch all data for monthly chart
+  const { data: allViews } = await supabase.from("page_views").select("created_at");
+  const { data: allClicks } = await supabase.from("whatsapp_clicks").select("created_at");
+
+  const monthMap: Record<string, { views: number, clicks: number }> = {};
+  const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+  
+  // Initialize last 6 months
+  const today = new Date();
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+    monthMap[`${months[d.getMonth()]} ${d.getFullYear().toString().slice(2)}`] = { views: 0, clicks: 0 };
+  }
+
+  if (allViews) {
+    allViews.forEach(v => {
+      const d = new Date(v.created_at);
+      const key = `${months[d.getMonth()]} ${d.getFullYear().toString().slice(2)}`;
+      if (monthMap[key]) monthMap[key].views++;
+    });
+  }
+
+  if (allClicks) {
+    allClicks.forEach(c => {
+      const d = new Date(c.created_at);
+      const key = `${months[d.getMonth()]} ${d.getFullYear().toString().slice(2)}`;
+      if (monthMap[key]) monthMap[key].clicks++;
+    });
+  }
+
+  const monthlyData = Object.entries(monthMap).map(([month, data]) => ({
+    month,
+    views: data.views,
+    clicks: data.clicks,
+  }));
+
   return (
     <div className="space-y-8 pb-10">
       <div>
@@ -146,7 +182,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Gráficos con Recharts */}
-      <AnalyticsCharts topProducts={topProducts} asesorClicks={asesorData} />
+      <AnalyticsCharts topProducts={topProducts} asesorClicks={asesorData} monthlyData={monthlyData} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         {/* Top Páginas Lista */}
