@@ -10,7 +10,7 @@ const INFO = [
   {
     Icon: MapPin,
     title: "Dirección",
-    lines: ["Jirón Juan José Crespo 198", "Ate, Lima", "Ref: Frente a Real Plaza Puruchuco"],
+    lines: ["Calle Oslo 198, Oficina 201", "Los Portales - Ate, Lima", "Ref: Frente a Real Plaza Puruchuco"],
   },
   {
     Icon: Phone,
@@ -136,8 +136,8 @@ export function TiendaClient() {
             <div className="px-7 sm:px-10 py-6 sm:py-8 space-y-4">
               <div>
                 <p className="text-[10px] font-semibold text-[#6e6e73] uppercase tracking-[0.16em] mb-1">Ubicación</p>
-                <p className="text-[15px] text-[#1d1d1f] dark:text-white font-semibold">Jirón Juan José Crespo 198</p>
-                <p className="text-xs text-[#6e6e73]">Ate, Lima, Perú</p>
+                <p className="text-[15px] text-[#1d1d1f] dark:text-white font-semibold">Calle Oslo 198, Oficina 201</p>
+                <p className="text-xs text-[#6e6e73]">Urb. Los Portales — Ate, Lima, Perú</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-[#f5f5f7] dark:bg-[#1a1a1a] border border-[#e8e8ed] dark:border-[#2a2a2a]">

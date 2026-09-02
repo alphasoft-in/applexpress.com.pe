@@ -42,7 +42,7 @@ export default function PoliticasEnvioPage() {
 
             <h2 className="text-xl font-bold mt-8 mb-4 text-[#1d1d1f] dark:text-white tracking-tight">Recojo en Tienda</h2>
             <p className="mb-6 text-sm sm:text-[15px] leading-relaxed text-[#1d1d1f] dark:text-[#a1a1a6]">
-              Si lo prefieres, puedes seleccionar la opción de recojo en nuestra oficina ubicada en Jirón Juan José Crespo 198, Ate. Te notificaremos cuando tu pedido esté listo para ser retirado.
+              Si lo prefieres, puedes seleccionar la opción de recojo en nuestra oficina ubicada en Calle Oslo 198, Oficina 201, Ate. Te notificaremos cuando tu pedido esté listo para ser retirado.
             </p>
           </div>
         </div>

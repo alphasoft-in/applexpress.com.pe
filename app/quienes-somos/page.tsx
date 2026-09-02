@@ -37,7 +37,7 @@ export default function QuienesSomosPage() {
 
             <h2 className="text-xl font-bold mt-8 mb-4 text-[#1d1d1f] dark:text-white tracking-tight">Visítanos</h2>
             <p className="mb-6 text-sm sm:text-[15px] leading-relaxed text-[#1d1d1f] dark:text-[#a1a1a6]">
-              Estaremos encantados de recibirte en nuestra oficina ubicada en Jirón Juan José Crespo 198, Ate (Lima, Perú). Vive la experiencia Apple Express.
+              Estaremos encantados de recibirte en nuestra oficina ubicada en Calle Oslo 198, Oficina 201, Ate (Lima, Perú). Vive la experiencia Apple Express.
             </p>
           </div>
         </div>
