@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
-          className="text-[11px] sm:text-xs font-semibold text-[#2997ff] mb-4 sm:mb-5 tracking-[0.18em] uppercase"
+          className="text-[11px] sm:text-xs font-semibold text-[#005cbf] dark:text-[#2997ff] mb-4 sm:mb-5 tracking-[0.18em] uppercase"
         >
           Nuevo ingreso
         </motion.p>

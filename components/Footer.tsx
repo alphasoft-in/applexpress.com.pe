@@ -49,7 +49,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#111111] text-[#6e6e73] border-t border-[#3a3a3c]">
+    <footer className="bg-[#111111] text-[#a1a1a6] border-t border-[#3a3a3c]">
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
         {/* Grid 2 cols on mobile, 4 on md+ */}
@@ -161,7 +161,7 @@ export function Footer() {
             <p className="text-white font-medium mb-0.5">FHARMAG S.A.C &mdash; RUC: 20612083950</p>
             <p>Importación directa de tecnología original desde Estados Unidos.</p>
           </div>
-          <p className="text-xs whitespace-nowrap text-[#6e6e73]">
+          <p className="text-xs whitespace-nowrap text-[#a1a1a6]">
             &copy; {new Date().getFullYear()} Apple Express
           </p>
         </div>

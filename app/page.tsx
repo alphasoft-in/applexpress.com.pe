@@ -4,6 +4,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { ShippingSection } from "@/components/ShippingSection";
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
+import { supabase } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Apple Express Peru | MacBook, iPhone, iPad importados de EE.UU.",
@@ -60,7 +61,12 @@ const localBusinessJsonLd = {
   paymentAccepted: "Cash, Bank Transfer",
 };
 
-export default function Home() {
+export default async function Home() {
+  const { data: dbProducts } = await supabase
+    .from("products")
+    .select("id, model, extra, category, slug, image")
+    .limit(4);
+
   return (
     <main className="min-h-screen bg-[#fbfbfd] dark:bg-black">
       <script
@@ -69,7 +75,7 @@ export default function Home() {
       />
       <Navbar />
       <Hero />
-      <ProductGrid />
+      <ProductGrid initialProducts={dbProducts || []} />
       <ShippingSection />
       <Footer />
     </main>
