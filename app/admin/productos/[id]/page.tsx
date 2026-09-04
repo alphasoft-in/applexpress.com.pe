@@ -117,6 +117,7 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
 
       if (updateError) throw updateError;
 
+      alert("Producto actualizado exitosamente");
       router.push("/admin/productos");
       router.refresh();
       

@@ -93,6 +93,7 @@ export default function NuevoProductoPage() {
 
       if (insertError) throw insertError;
 
+      alert("Producto guardado exitosamente");
       router.push("/admin/productos");
       router.refresh();
       
