@@ -85,7 +85,7 @@ export default async function Image() {
             marginBottom: "40px",
           }}
         >
-          MacBook Pro · iPhone 15 · iPad Pro · Apple Watch · AirPods
+          MacBook Pro · iPhone 15 · iPad Pro · AirPods
         </div>
 
         {/* Bottom footer bar */}

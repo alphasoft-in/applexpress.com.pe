@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     title: "iPad Pro y Air en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra iPad Pro M2, iPad Air importados de USA. Stock en Lima. Garantia incluida.",
     url: "https://appleexpress.com.pe/ipad",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
 

@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     template: "%s | Apple Express Peru",
   },
   description:
-    "Importamos MacBook Pro, iPhone 15, iPad Pro, Apple Watch y AirPods directamente desde Estados Unidos. Garantia total, precios competitivos y envio a todo el Peru.",
+    "Importamos MacBook Pro, iPhone 15, iPad Pro y AirPods directamente desde Estados Unidos. Garantia total, precios competitivos y envio a todo el Peru.",
   keywords: [
     "MacBook Peru",
     "iPhone Peru",
     "iPad Peru",
-    "Apple Watch Peru",
+
     "AirPods Peru",
     "importador Apple Peru",
     "MacBook Pro Lima",
@@ -74,7 +74,6 @@ export const metadata: Metadata = {
     title: "Apple Express Peru | MacBook, iPhone, iPad importados",
     description:
       "MacBook Pro, iPhone 15, iPad Pro y AirPods importados de EE.UU. Garantia total. Envio a todo el Peru.",
-    images: ["/og-image.jpg"],
   },
 
   alternates: {

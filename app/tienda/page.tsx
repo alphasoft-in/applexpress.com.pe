@@ -5,14 +5,13 @@ import { TiendaClient } from "@/components/TiendaClient";
 
 export const metadata: Metadata = {
   title: "Nuestra Tienda en Lima | Apple Express Perú",
-  description: "Visita nuestra tienda física en Ate, Lima. Conoce los productos Apple importados en persona: MacBook, iPhone, iPad, Apple Watch. Asesoría personalizada.",
+  description: "Visita nuestra tienda física en Ate, Lima. Conoce los productos Apple importados en persona: MacBook, iPhone, iPad. Asesoría personalizada.",
   keywords: ["tienda Apple Lima", "comprar Apple Ate", "tienda Apple Express", "Apple Store Lima Peru", "MacBook tienda Lima"],
   alternates: { canonical: "https://appleexpress.com.pe/tienda" },
   openGraph: {
     title: "Nuestra Tienda en Lima | Apple Express Perú",
     description: "Visita nuestra sede en Ate, Lima. Productos Apple importados con garantía y atención personalizada.",
     url: "https://appleexpress.com.pe/tienda",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
 

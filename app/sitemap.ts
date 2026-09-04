@@ -10,7 +10,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/mac`,            lastModified: NOW, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/iphone`,         lastModified: NOW, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/ipad`,           lastModified: NOW, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${BASE}/watch`,          lastModified: NOW, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/airpods`,        lastModified: NOW, changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE}/accesorios`,     lastModified: NOW, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/tienda`,         lastModified: NOW, changeFrequency: "monthly", priority: 0.7 },

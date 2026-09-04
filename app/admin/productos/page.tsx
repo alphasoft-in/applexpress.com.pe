@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Plus, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { ProductActions } from "@/components/admin/ProductActions";
 import { SearchProduct } from "@/components/admin/SearchProduct";
@@ -76,7 +77,7 @@ export default async function AdminProductsPage({
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
                         {product.image && (
-                          <img src={product.image} alt={product.model} className="w-10 h-10 rounded-md object-cover bg-gray-100" />
+                          <Image src={product.image} alt={product.model} width={40} height={40} className="w-10 h-10 rounded-md object-cover bg-gray-100" />
                         )}
                         <div>
                           <p className="text-sm font-medium text-gray-900">{product.model}</p>

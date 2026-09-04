@@ -194,7 +194,6 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
                   <option value="iphone">iPhone</option>
                   <option value="mac">Mac</option>
                   <option value="ipad">iPad</option>
-                  <option value="watch">Apple Watch</option>
                   <option value="airpods">AirPods</option>
                   <option value="accesorios">Accesorios</option>
                 </select>

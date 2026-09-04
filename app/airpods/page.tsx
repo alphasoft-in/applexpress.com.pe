@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     title: "AirPods Pro y Max en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra AirPods Pro 2, AirPods Max importados de USA. Stock en Lima. Garantia incluida.",
     url: "https://appleexpress.com.pe/airpods",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
 

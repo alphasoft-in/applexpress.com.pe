@@ -10,13 +10,12 @@ import { supabase } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Apple Express Peru | MacBook, iPhone, iPad importados de EE.UU.",
-  description: "Importamos MacBook Pro, iPhone 15, iPad Pro, Apple Watch y AirPods directamente desde Estados Unidos. Garantia total, precios competitivos y envio a todo el Peru.",
+  description: "Importamos MacBook Pro, iPhone 15, iPad Pro y AirPods directamente desde Estados Unidos. Garantia total, precios competitivos y envio a todo el Peru.",
   alternates: { canonical: "https://appleexpress.com.pe" },
   openGraph: {
     title: "Apple Express Peru | MacBook, iPhone, iPad importados de EE.UU.",
     description: "MacBook Pro, iPhone 15, iPad Pro y AirPods importados de EE.UU. Garantia total. Envio a todo el Peru.",
     url: "https://appleexpress.com.pe",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Apple Express Peru" }],
   },
 };
 
@@ -24,9 +23,9 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "Store",
   name: "Apple Express Peru",
-  description: "Importadora de productos Apple desde Estados Unidos. MacBook, iPhone, iPad, Apple Watch y AirPods con garantia.",
+  description: "Importadora de productos Apple desde Estados Unidos. MacBook, iPhone, iPad y AirPods con garantia.",
   url: "https://appleexpress.com.pe",
-  telephone: "+51934288165",
+  telephone: "+51982848503",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Calle Oslo 198, Oficina 201",

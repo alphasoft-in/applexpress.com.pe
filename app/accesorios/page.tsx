@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     title: "Accesorios Originales Apple en Perú | Apple Express",
     description: "Compra Apple Pencil, Magic Keyboard, MagSafe originales e importados de USA. Stock en Lima.",
     url: "https://appleexpress.com.pe/accesorios",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
 

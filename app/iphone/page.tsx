@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     title: "iPhone 15 y 16 en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra iPhone 15 Pro, 15 Pro Max, 16 Pro importados de USA. Stock en Lima. Garantia incluida.",
     url: "https://appleexpress.com.pe/iphone",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
 
