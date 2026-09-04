@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         hostname: 'kduevgbrnffmmijdmvox.supabase.co',
       },
     ],
+    formats: ['image/avif', 'image/webp'],
   },
 };
 
