@@ -30,11 +30,11 @@ export async function generateMetadata(
   return {
     title,
     description,
-    alternates: { canonical: `https://applexpress-com-pe.vercel.app/watch/${slug}` },
+    alternates: { canonical: `https://appleexpress.com.pe/watch/${slug}` },
     openGraph: {
       title: `${title} | Apple Express Peru`,
       description,
-      url: `https://applexpress-com-pe.vercel.app/watch/${slug}`,
+      url: `https://appleexpress.com.pe/watch/${slug}`,
       images: item.image?.startsWith("http")
         ? [{ url: item.image, width: 800, height: 600, alt: item.model }]
         : [{ url: "/og-image.jpg", width: 1200, height: 630 }],
@@ -75,7 +75,7 @@ export default async function DetailPage({ params }: { params: Promise<{ slug: s
       seller: {
         "@type": "Organization",
         name: "Apple Express Peru",
-        url: "https://applexpress-com-pe.vercel.app",
+        url: "https://appleexpress.com.pe",
       },
     },
   };

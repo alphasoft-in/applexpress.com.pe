@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   title: "AirPods Pro y Max en Perú | Importado de EE.UU.",
   description: "Compra AirPods Pro 2, AirPods Max importados de USA. Stock en Lima. Garantia incluida.",
   keywords: ["AirPods Pro Peru", "AirPods Max Peru", "Comprar AirPods Lima", "AirPods importados Peru"],
-  alternates: { canonical: "https://applexpress-com-pe.vercel.app/airpods" },
+  alternates: { canonical: "https://appleexpress.com.pe/airpods" },
   openGraph: {
     title: "AirPods Pro y Max en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra AirPods Pro 2, AirPods Max importados de USA. Stock en Lima. Garantia incluida.",
-    url: "https://applexpress-com-pe.vercel.app/airpods",
+    url: "https://appleexpress.com.pe/airpods",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };

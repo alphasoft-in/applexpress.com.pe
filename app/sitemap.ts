@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 
-const BASE = "https://applexpress-com-pe.vercel.app";
+const BASE = "https://appleexpress.com.pe";
 const NOW = new Date();
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

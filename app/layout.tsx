@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://applexpress-com-pe.vercel.app"),
+  metadataBase: new URL("https://appleexpress.com.pe"),
 
   title: {
     default: "Apple Express Peru | MacBook, iPhone, iPad importados de EE.UU.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_PE",
-    url: "https://applexpress-com-pe.vercel.app",
+    url: "https://appleexpress.com.pe",
     siteName: "Apple Express Peru",
     title: "Apple Express Peru | MacBook, iPhone, iPad importados de EE.UU.",
     description:
@@ -78,9 +78,9 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://applexpress-com-pe.vercel.app",
+    canonical: "https://appleexpress.com.pe",
     languages: {
-      "es-PE": "https://applexpress-com-pe.vercel.app",
+      "es-PE": "https://appleexpress.com.pe",
     },
   },
 
@@ -89,8 +89,18 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" }
+    ],
+  },
+  manifest: "/site.webmanifest",
+  appleWebApp: {
+    title: "Apple Express",
   },
 };
 

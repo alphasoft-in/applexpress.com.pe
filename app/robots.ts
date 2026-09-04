@@ -1,4 +1,4 @@
-﻿import { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,10 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: ["/api/", "/_next/", "/admin/"],
       },
     ],
-    sitemap: "https://applexpress-com-pe.vercel.app/sitemap.xml",
-    host: "https://applexpress-com-pe.vercel.app",
+    sitemap: "https://appleexpress.com.pe/sitemap.xml",
+    host: "https://appleexpress.com.pe",
   };
 }

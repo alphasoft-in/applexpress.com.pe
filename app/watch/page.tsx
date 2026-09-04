@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   title: "Apple Watch Ultra y Series 9 en Perú | Importado de EE.UU.",
   description: "Compra Apple Watch Ultra 2, Series 9 importados de USA. Stock en Lima. Garantia incluida.",
   keywords: ["Apple Watch Peru", "Watch Ultra Peru", "Comprar Apple Watch Lima", "Watch importado Peru"],
-  alternates: { canonical: "https://applexpress-com-pe.vercel.app/watch" },
+  alternates: { canonical: "https://appleexpress.com.pe/watch" },
   openGraph: {
     title: "Apple Watch Ultra y Series 9 en Perú | Importado de EE.UU. | Apple Express",
     description: "Compra Apple Watch Ultra 2, Series 9 importados de USA. Stock en Lima. Garantia incluida.",
-    url: "https://applexpress-com-pe.vercel.app/watch",
+    url: "https://appleexpress.com.pe/watch",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
 };
