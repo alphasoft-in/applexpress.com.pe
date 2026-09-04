@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ArrowLeft, Save, ChevronDown, CloudUpload, Package, ImageIcon, List } from "lucide-react";
 import Link from "next/link";
+import Swal from "sweetalert2";
 import { use } from "react";
 
 export default function EditarProductoPage({ params }: { params: Promise<{ id: string }> }) {
@@ -57,7 +58,7 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
         }
       } catch (error) {
         console.error("Error fetching product:", error);
-        alert("Error cargando el producto");
+        Swal.fire("Error", "Error cargando el producto", "error");
       } finally {
         setLoading(false);
       }
@@ -115,15 +116,18 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
         })
         .eq("id", id);
 
-      if (updateError) throw updateError;
-
-      alert("Producto actualizado exitosamente");
+      await Swal.fire({
+        title: "¡Éxito!",
+        text: "Producto actualizado exitosamente",
+        icon: "success",
+        confirmButtonColor: "#0071e3",
+      });
       router.push("/admin/productos");
       router.refresh();
       
     } catch (error: any) {
       console.error("Error updating product:", error);
-      alert("Error al guardar: " + error.message);
+      Swal.fire("Error", "Error al guardar: " + error.message, "error");
     } finally {
       setSaving(false);
     }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ArrowLeft, Save, ChevronDown, CloudUpload, Package, ImageIcon, List } from "lucide-react";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 export default function NuevoProductoPage() {
   const router = useRouter();
@@ -91,15 +92,18 @@ export default function NuevoProductoPage() {
         }
       ]);
 
-      if (insertError) throw insertError;
-
-      alert("Producto guardado exitosamente");
+      await Swal.fire({
+        title: "¡Éxito!",
+        text: "Producto guardado exitosamente",
+        icon: "success",
+        confirmButtonColor: "#0071e3",
+      });
       router.push("/admin/productos");
       router.refresh();
       
     } catch (error: any) {
       console.error("Error creating product:", error);
-      alert("Error al guardar: " + error.message);
+      Swal.fire("Error", "Error al guardar: " + error.message, "error");
     } finally {
       setLoading(false);
     }
