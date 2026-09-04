@@ -41,46 +41,63 @@ export default async function Image() {
           style={{
             display: "flex",
             alignItems: "center",
-            padding: "8px 20px",
+            padding: "12px 32px",
             borderRadius: "9999px",
             backgroundColor: "rgba(255, 255, 255, 0.08)",
             border: "1px solid rgba(255, 255, 255, 0.16)",
-            fontSize: "14px",
+            fontSize: "24px",
             fontWeight: "600",
-            letterSpacing: "0.2em",
+            letterSpacing: "0.15em",
             textTransform: "uppercase",
-            color: "#86868b",
-            marginBottom: "28px",
+            color: "#a1a1aa",
+            marginBottom: "40px",
           }}
         >
-          Importados desde EE.UU. · Garantía Total
+          Importados de EE.UU.
         </div>
 
         {/* Main Title */}
         <div
           style={{
-            fontSize: "64px",
-            fontWeight: "800",
-            letterSpacing: "-0.03em",
-            textAlign: "center",
-            lineHeight: "1.08",
-            marginBottom: "20px",
-            background: "linear-gradient(180deg, #ffffff 40%, #a1a1aa 100%)",
-            backgroundClip: "text",
-            color: "transparent",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginBottom: "30px",
           }}
         >
-          Apple Express Perú
+          <div
+            style={{
+              fontSize: "120px",
+              fontWeight: "900",
+              letterSpacing: "-0.04em",
+              lineHeight: "1.1",
+              background: "linear-gradient(180deg, #ffffff 40%, #a1a1aa 100%)",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            Apple Express
+          </div>
+          <div
+            style={{
+              fontSize: "72px",
+              fontWeight: "700",
+              color: "#ffffff",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Perú
+          </div>
         </div>
 
         {/* Subtitle */}
         <div
           style={{
-            fontSize: "24px",
+            fontSize: "36px",
             fontWeight: "500",
             color: "#86868b",
             textAlign: "center",
-            maxWidth: "800px",
+            maxWidth: "900px",
             lineHeight: "1.4",
             marginBottom: "40px",
           }}
@@ -94,11 +111,11 @@ export default async function Image() {
             display: "flex",
             alignItems: "center",
             gap: "24px",
-            fontSize: "15px",
+            fontSize: "24px",
             color: "#52525b",
           }}
         >
-          <span>applexpress-com-pe.vercel.app</span>
+          <span>appleexpress.com.pe</span>
           <span>•</span>
           <span>Lima, Perú</span>
           <span>•</span>
