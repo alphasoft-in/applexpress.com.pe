@@ -1,8 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { ProductGrid } from "@/components/ProductGrid";
-import { ShippingSection } from "@/components/ShippingSection";
-import { Footer } from "@/components/Footer";
+import dynamic from "next/dynamic";
+
+const ProductGrid = dynamic(() => import("@/components/ProductGrid").then(mod => mod.ProductGrid));
+const ShippingSection = dynamic(() => import("@/components/ShippingSection").then(mod => mod.ShippingSection));
+const Footer = dynamic(() => import("@/components/Footer").then(mod => mod.Footer));
 import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 
