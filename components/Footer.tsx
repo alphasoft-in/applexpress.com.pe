@@ -137,17 +137,17 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4 mt-4">
               {settings.facebook_link && (
-                <a href={settings.facebook_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href={settings.facebook_link} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-white transition-colors">
                   <FaFacebook className="w-4 h-4" />
                 </a>
               )}
               {settings.instagram_link && (
-                <a href={settings.instagram_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href={settings.instagram_link} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-white transition-colors">
                   <FaInstagram className="w-4 h-4" />
                 </a>
               )}
               {settings.tiktok_link && (
-                <a href={settings.tiktok_link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                <a href={settings.tiktok_link} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:text-white transition-colors">
                   <FaTiktok className="w-4 h-4" />
                 </a>
               )}
