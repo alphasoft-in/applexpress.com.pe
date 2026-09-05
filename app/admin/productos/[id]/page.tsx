@@ -290,6 +290,10 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
                 <input type="text" name="storage" value={formData.storage || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. 256GB" />
               </div>
               <div>
+                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Memoria RAM</label>
+                <input type="text" name="memory" value={formData.memory || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. 8GB" />
+              </div>
+              <div>
                 <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Cámara</label>
                 <input type="text" name="camera" value={formData.camera || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. 48MP" />
               </div>
@@ -298,7 +302,19 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
                 <input type="text" name="battery" value={formData.battery || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. Hasta 29 hrs" />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Características (Accesorios)</label>
+                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Tipo (Accesorios)</label>
+                <input type="text" name="type" value={formData.type || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. Adaptador de corriente" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Compatibilidad (Accesorios)</label>
+                <input type="text" name="compatibility" value={formData.compatibility || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. iPhone, iPad, AirPods" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Conectividad (Accesorios)</label>
+                <input type="text" name="connectivity" value={formData.connectivity || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. Puerto USB-C" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Características Adicionales</label>
                 <input type="text" name="features" value={formData.features || ""} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all appearance-none cursor-pointer" placeholder="Ej. Cancelación de ruido" />
               </div>
             </div>

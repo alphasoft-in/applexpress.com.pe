@@ -91,7 +91,7 @@ export function ProductCard({ name, specs, price, image, href, waLink, badge, st
         {/* Price & Stock */}
         <div>
           <p className="text-[13px] sm:text-sm font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-            Desde {price}
+            Desde: {price || "-"}
           </p>
           <div className="mt-2.5">
             {stock === 0 ? (
