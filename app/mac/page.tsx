@@ -26,6 +26,20 @@ export default async function MacPage() {
     .eq("category", "mac")
     .order("created_at", { ascending: false });
 
+  // Ordenar para que los Intel vayan primero
+  const sortedProducts = products?.sort((a, b) => {
+    const isIntelA = a.processor?.toLowerCase().includes("intel");
+    const isIntelB = b.processor?.toLowerCase().includes("intel");
+    
+    if (isIntelA && !isIntelB) return -1;
+    if (!isIntelA && isIntelB) return 1;
+    
+    // Si ambos son del mismo tipo (Intel/M-series), ordenarlos por precio de menor a mayor para mejor UX
+    const priceA = parseInt(a.price.replace(/\D/g, '')) || 0;
+    const priceB = parseInt(b.price.replace(/\D/g, '')) || 0;
+    return priceA - priceB;
+  });
+
   return (
     <main className="min-h-screen bg-[#fbfbfd] dark:bg-black pt-12">
       <Navbar />
@@ -36,7 +50,7 @@ export default async function MacPage() {
           subtitle="Superpotencia para pros. Catalogo exclusivo importado directamente desde Estados Unidos."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {products?.map((item, idx) => (
+          {sortedProducts?.map((item, idx) => (
             <ProductCard
               key={item.id} idx={idx}
               name={item.model}
