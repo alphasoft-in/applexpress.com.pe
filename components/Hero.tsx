@@ -5,7 +5,7 @@ import Link from "next/link";
 export function Hero() {
   return (
     <section className="relative w-full min-h-screen bg-[#fbfbfd] dark:bg-black overflow-hidden flex flex-col items-center justify-center">
-      <div className="relative z-10 flex flex-col items-center text-center px-5 sm:px-8 max-w-4xl mx-auto w-full pt-20 sm:pt-24 animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out fill-mode-both">
+      <div className="relative z-10 flex flex-col items-center text-center px-5 sm:px-8 max-w-4xl mx-auto w-full pt-20 sm:pt-24">
         <p className="text-[11px] sm:text-xs font-semibold text-[#005cbf] dark:text-[#2997ff] mb-4 sm:mb-5 tracking-[0.18em] uppercase">
           Nuevo ingreso
         </p>
