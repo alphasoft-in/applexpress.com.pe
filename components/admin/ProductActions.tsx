@@ -6,6 +6,8 @@ import { supabase } from "@/lib/supabase";
 import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 
+import { clearCache } from "@/app/admin/actions";
+
 interface ProductActionsProps {
   productId: string;
 }
@@ -23,6 +25,8 @@ export function ProductActions({ productId }: ProductActionsProps) {
     try {
       const { error } = await supabase.from("products").delete().eq("id", productId);
       if (error) throw error;
+      
+      await clearCache();
       
       // Refresh the page to show the updated list
       router.refresh();

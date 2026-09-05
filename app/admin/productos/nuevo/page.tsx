@@ -7,6 +7,8 @@ import { ArrowLeft, Save, ChevronDown, CloudUpload, Package, ImageIcon, List } f
 import Link from "next/link";
 import Swal from "sweetalert2";
 
+import { clearCache } from "@/app/admin/actions";
+
 export default function NuevoProductoPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -91,6 +93,8 @@ export default function NuevoProductoPage() {
           image: imageUrl
         }
       ]);
+
+      await clearCache();
 
       await Swal.fire({
         title: "¡Éxito!",

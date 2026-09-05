@@ -8,6 +8,8 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { use } from "react";
 
+import { clearCache } from "@/app/admin/actions";
+
 export default function EditarProductoPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const { id } = use(params);
@@ -115,6 +117,8 @@ export default function EditarProductoPage({ params }: { params: Promise<{ id: s
           image: imageUrl
         })
         .eq("id", id);
+
+      await clearCache();
 
       await Swal.fire({
         title: "¡Éxito!",
