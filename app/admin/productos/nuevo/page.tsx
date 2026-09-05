@@ -40,7 +40,7 @@ export default function NuevoProductoPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     
     if (e.target.name === "slug") {
-      setSlugEdited(true);
+      setSlugEdited(e.target.value !== "");
     }
     
     // Auto-generate slug from model and extra only if user hasn't manually edited the slug
