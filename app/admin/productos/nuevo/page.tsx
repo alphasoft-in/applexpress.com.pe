@@ -52,7 +52,7 @@ export default function NuevoProductoPage() {
       
       setFormData(prev => ({
         ...prev,
-        slug: combined.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+        slug: combined.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
       }));
     }
   };
