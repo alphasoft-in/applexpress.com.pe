@@ -43,11 +43,16 @@ export default function NuevoProductoPage() {
       setSlugEdited(true);
     }
     
-    // Auto-generate slug from model only if user hasn't manually edited the slug
-    if (e.target.name === "model" && !slugEdited) {
+    // Auto-generate slug from model and extra only if user hasn't manually edited the slug
+    if ((e.target.name === "model" || e.target.name === "extra") && !slugEdited) {
+      const updatedModel = e.target.name === "model" ? e.target.value : formData.model;
+      const updatedExtra = e.target.name === "extra" ? e.target.value : formData.extra;
+      
+      const combined = updatedExtra ? `${updatedModel}-${updatedExtra}` : updatedModel;
+      
       setFormData(prev => ({
         ...prev,
-        slug: e.target.value.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+        slug: combined.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
       }));
     }
   };
